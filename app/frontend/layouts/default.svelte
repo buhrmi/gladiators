@@ -7,7 +7,7 @@
 	
   let {
     children,
-    logged_in,
+    character_sgid,
     flash,
     panes = [],
   } = $props();
@@ -16,18 +16,18 @@
   resetStores();
   resetNav()
   
-  const current_user = getStore("current_user")
+  const character = getStore("character")
 
   let unsubscribe = null;
   $effect(() => {
     reconnect();
-    if (logged_in) {
-      unsubscribe = subscribe("UserChannel");
+    if (character_sgid) {
+      unsubscribe = subscribe("CharacterChannel", {character_sgid});
     }
     else if (unsubscribe) {
       unsubscribe();
       unsubscribe = null;
-      current_user.set(null);
+      character.set(null);
     }
   })
 
@@ -44,12 +44,21 @@
 
 <header class="px-4 py-2 md:flex-col h-full">
   <menu class="md:w-full">
+    {#if character_sgid}
+      {#if $character}
+        {$character.name}
+      {:else}
+      <div class="spinner"></div>
+      {/if}
+    {:else}
     <button class="btn primary" use:navstack={{
         group: "user",
         initialComponent: import("~/pages/characters/new.svelte"),
+        initialPage: {url: "/characters/new"}
     }}>
       Charakter erstellen
     </button>
+    {/if}
     <!-- {#if $current_user}
       <button id="user" use:navstack={{
         group: "user",

@@ -3,7 +3,8 @@
   import { useForm } from "inertiax-svelte"
 
   const character = useForm({
-    name: ''
+    name: '',
+    race: '',
   });
 </script>
 
@@ -16,7 +17,7 @@
     <p>
       Wählt einen angsteinflößenden Namen, der Eure Gegner erzittern lässt.
     </p>
-    <Input label="Name" bind:value={$character.name} placeholder="Pupsi der Zerstörer" />
+    <Input label="Name" bind:value={$character.name} bind:error={$character.errors.name} placeholder="Pupsi der Zerstörer" />
 
     <select bind:value={$character.race}>
       <option value="" disabled selected>Rasse wählen</option>
@@ -30,7 +31,7 @@
 
 <footer>
   <section>
-    <button class="btn primary" on:click={() => $character.post('/characters')}>
+    <button class="btn primary" data-loader on:click={() => $character.post('/characters')}>
       Erstellen
     </button>
   </section>

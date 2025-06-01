@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   inertia_share do
     {
       flash: flash.to_h,
-      logged_in: session[:user_id].present?
+      character_sgid: current_character&.to_sgid_param
     }
   end
 
@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
     value unless request.inertia?
   end
 
-  def current_user
-    return unless session[:user_id]
-    Current.user ||= User.find_by(id: session[:user_id])
+  def current_character
+    return unless session[:character_id]
+    Current.character ||= Character.find_by(id: session[:character_id])
   end
 
   def launch_in_modal(root = root_path)
