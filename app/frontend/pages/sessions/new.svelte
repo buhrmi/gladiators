@@ -1,61 +1,6 @@
 <script>
-  import { useForm, inertia } from "inertiax-svelte";
-  import Input from "~/components/Input.svelte";
-  import { onDestroy, onMount } from "svelte";
-  import { navstack } from "navstack";
 
-  const { flash } = $props();
 
-  let turnstileError = $derived(flash?.turnstile_error);
-
-  let form = useForm({
-    email: "", 
-    password: "",
-    turnstile_token: ""
-  });
-
-  function submit(e) {
-    e.preventDefault();
-    $form.post(`/session`);
-  }
-
-  let captchaCompleted = $state(process.env.RAILS_ENV !== "production")
-  let widgetId = null
-  onMount(function() {
-    return // TODO: require turnstile after second or thrid try
-    window.onloadTurnstileCallback = function() {
-      widgetId = turnstile.render('#turnstile_container_signin', {
-        theme: 'light',
-        sitekey: '0x4AAAAAAAQHOuUYuYeDDJQ7',
-        size: "flexible",
-        callback: function(token) {
-          $form.turnstile_token = token
-          captchaCompleted = true
-        }
-      });
-    }
-    // load cloudflare turnstile js
-    const script = document.getElementById('turnstile_script');
-    if (script) window.onloadTurnstileCallback();
-    else {
-      const script = document.createElement('script');
-      script.id = 'turnstile_script';
-      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  })
-
-  onDestroy(function() {
-    if (widgetId) {
-      turnstile.remove(widgetId);
-    }
-  });
-
-  function reloadCaptcha() {
-    turnstile.reset(widgetId);
-    turnstileError = null
-  }
 </script>
 
 <main>
@@ -63,35 +8,15 @@
     <h1 class="mb-4">
       Welcome back
     </h1>
-    <Input name="email" label="Email Address" bind:value={$form.email} bind:error={$form.errors['email']} />
-    <Input name="password" type="password" label="Password" bind:value={$form.password}  bind:error={$form.errors['password']} />
-    {#if flash?.error}
-      <div class="error">
-        {flash.error}
-      </div>
-    {/if}
-    <p class="text-right">
-      <a href="/password_resets/new" use:navstack={{
-        initialComponent: import("~/pages/password_resets/new.svelte"),
-        email: $form.email
-      }}>Forgot password?</a>
-    </p>
-
-    <!-- <div id="turnstile_container_signin"></div> -->
-    {#if turnstileError}
-      <div class="error">
-        {turnstileError}
-        <button onclick={reloadCaptcha}>
-          Reload
-          <div class="i-ci:arrow-reload-02 w-1.2em h-1.2em"></div>
-        </button>
-      </div>
-    {/if}
+    <button
+      type="button"
+      class="btn btn-discord w-full mb-4"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="inline-block mr-2 align-middle">
+        <path d="M20.317 4.369A19.791 19.791 0 0 0 16.885 3.1a.112.112 0 0 0-.119.056c-.522.927-.986 1.89-1.388 2.884a18.524 18.524 0 0 0-5.632 0 13.104 13.104 0 0 0-1.392-2.884.115.115 0 0 0-.119-.056A19.736 19.736 0 0 0 3.683 4.369a.104.104 0 0 0-.047.041C1.533 7.693.371 10.97.396 14.209a.112.112 0 0 0 .042.082c2.104 1.547 4.144 2.488 6.164 3.104a.112.112 0 0 0 .123-.041c.473-.65.893-1.34 1.253-2.066a.112.112 0 0 0-.061-.154c-.672-.254-1.312-.563-1.927-.927a.112.112 0 0 1-.011-.186c.13-.098.26-.197.386-.297a.112.112 0 0 1 .114-.013c4.056 1.85 8.447 1.85 12.47 0a.112.112 0 0 1 .116.013c.126.1.256.199.386.297a.112.112 0 0 1-.011.186c-.615.364-1.255.673-1.927.927a.112.112 0 0 0-.061.154c.36.726.78 1.416 1.253 2.066a.112.112 0 0 0 .123.041c2.02-.616 4.06-1.557 6.164-3.104a.112.112 0 0 0 .042-.082c.334-3.451-.559-6.708-2.24-9.799a.104.104 0 0 0-.047-.041ZM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.213 0 2.177 1.096 2.157 2.418 0 1.334-.955 2.419-2.157 2.419Zm7.974 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.213 0 2.177 1.096 2.157 2.418 0 1.334-.944 2.419-2.157 2.419Z" fill="#5865F2"/>
+      </svg>
+      Log in with Discord
+    </button>
   </section>
 </main>
 
-<footer>
-  <section>
-    <button class="btn primary" data-loader id="login" onclick={submit}>Sign in</button>
-  </section>
-</footer>

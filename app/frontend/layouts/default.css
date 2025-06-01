@@ -166,7 +166,6 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 100rem;
   width: 100%;
-  flex: 0;
 }
 
 .btn:disabled {
@@ -182,7 +181,7 @@ button {
   cursor: pointer;
 }
 
-.btn.nope, .btn.cancel {
+.btn.nope, .btn.cancel, .btn.secondary {
   border: 1px solid var(--color-link);
   /* background-color: #eee; */
   color: var(--color-link);

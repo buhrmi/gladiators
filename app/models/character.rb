@@ -1,5 +1,5 @@
 class Character < ApplicationRecord
-  include Properties
+  include FightLogic
 
   JSON_OPTIONS = {
     only: [ :id, :name, :level, :race, :last_hp, :last_hp_updated_at, :exp ]
@@ -7,6 +7,7 @@ class Character < ApplicationRecord
 
   PRIVATE_JSON_OPTIONS = {
     only: JSON_OPTIONS[:only] + [ :coppers ]
+    # methods: [ :exp_on_this_level, :exp_to_next_level ]
   }
 
   has_one_attached :portrait
@@ -28,5 +29,11 @@ class Character < ApplicationRecord
   def last_hp=(val)
     self[:last_hp] = val
     self.last_hp_updated_at = current_time
+  end
+
+  def exp=(new_exp)
+    puts "Setting exp to #{new_exp} for character #{self.name} (#{self.id})"
+    self[:exp] = new_exp
+    self.level = calculate_level
   end
 end

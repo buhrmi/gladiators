@@ -23,12 +23,6 @@ module Properties
     hp.to_f / max_hp.to_f * 100
   end
 
-  def hp=(new_hp)
-    self.last_hp_updated_at = current_time
-    self.last_hp = new_hp
-  end
-
-
   def hp_per_second
     1
   end
@@ -67,5 +61,20 @@ module Properties
 
   def current_time
     Time.current.to_f
+  end
+
+  def exp_on_this_level
+    self.exp - (EXP_TABLE[self.level] || 0)
+  end
+
+  def exp_to_next_level
+    (EXP_TABLE[self.level + 1] || 0) - EXP_TABLE[self.level]
+  end
+
+  def calculate_level
+    for level in 2..MAX_LEVEL
+      return level-1 if self.exp < EXP_TABLE[level]
+    end
+    MAX_LEVEL
   end
 end

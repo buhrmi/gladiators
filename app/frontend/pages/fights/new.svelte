@@ -2,7 +2,7 @@
   import { getContext } from 'svelte';
   const {
     target,
-    back,close
+    back
   } = $props();
 
   const { router } = getContext('inertia');

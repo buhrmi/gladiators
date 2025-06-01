@@ -37,12 +37,15 @@
     </section>
   </main>
   
-  <style>
-    .arena {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-    }
+<style>
+  .arena {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .attack {
+    flex: 0;
+  }
   .character_card {
     display: flex;
     border: 1px solid var(--color-border);
@@ -53,6 +56,4 @@
     flex: 1;
     text-decoration: none;
   }
-
-
 </style>

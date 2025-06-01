@@ -2,6 +2,7 @@
   import "@unocss/reset/tailwind.css";
 
   import './default.css';
+
   import character from '~/lib/character.svelte';
   import { derived } from 'svelte/store';
 
@@ -74,6 +75,17 @@
           <span>Wiederbelebung in {Math.ceil($character.ressurection_in)}</span>
         {/if}
       </div>
+      <div class="exp">
+        <div class="exp-bar-container">
+          <div
+        class="exp-bar"
+        style="width: {Math.max(0, Math.min(100, ($character.exp_on_this_level / $character.exp_to_next_level) * 100))}%"
+          ></div>
+          <div class="exp-text">
+        EXP: {Math.floor($character.exp_on_this_level)} / {$character.exp_to_next_level}
+          </div>
+        </div>
+      </div>
       <div class="flex gap-1 items-center">
         {#if gold}
           {gold} <img src="/icons/gold.png" class="h-4" alt="Gold" />
@@ -87,15 +99,22 @@
   {:else if character_sgid}
     <div class="spinner"></div>
   {:else}
-    <menu class="md:w-full px-4 py-2 ">
+    <div class="character text-center flex items-center gap-2 md:flex-col">
       <button class="btn primary" use:navstack={{
           group: "user",
           initialComponent: import("~/pages/characters/new.svelte"),
           initialPage: {url: "/characters/new"}
       }}>
-        Charakter erstellen
+        Char erstellen
       </button>
-    </menu>
+      oder
+      <button class="btn secondary" use:navstack={{
+          group: "user",
+          initialComponent: import("~/pages/sessions/new.svelte")
+      }}>
+        Einloggen
+      </button>
+    </div>
   {/if}
 </header>
 
@@ -110,7 +129,7 @@
       </a>
     </li>
         <li>
-      <a href="/" use:navstack={{ replace: true }}>
+      <a href="/guilds" use:navstack={{ replace: true }}>
         <div class="i-game-icons:barracks-tent w-1.8em h-1.8em"></div>
         <div>
           Gilde
@@ -128,7 +147,7 @@
   .hp-bar-container {
     width: 100%;
     height: 1.2em;
-    background: #e5e7eb;
+    background: #630505;
     border-radius: 0.6em;
     overflow: hidden;
     margin-bottom: 0.3em;
@@ -142,14 +161,42 @@
   }
   .hp-text { /* New style for the HP text */
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
     color: white; /* Or any color that contrasts well with your bar */
     font-size: 0.8em; /* Adjust as needed */
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5); /* Optional: for better readability */
     pointer-events: none; /* To allow clicks to pass through to the bar if needed */
   }
+  .exp-bar-container {
+    width: 100%;
+    height: 1.2em;
+    background: #530272;
+    border-radius: 0.6em;
+    overflow: hidden;
+    margin-bottom: 0.3em;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    position: relative; /* Added for positioning context */
+  }
+  .exp-bar {
+    height: 100%;
+    background: linear-gradient(#a78bfa 0%, #6d28d9 100%);
+    transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .exp-text { /* New style for the EXP text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure it covers the entire bar */
+    text-align: center; /* Center the text */
+    color: white; /* Or any color that contrasts well with your bar */
+    font-size: 0.8em; /* Adjust as needed */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5); /* Optional: for better readability */
+    pointer-events: none; /* To allow clicks to pass through to the bar if needed */
+  }
+
   nav a {
     display: flex;
     flex-direction: column;

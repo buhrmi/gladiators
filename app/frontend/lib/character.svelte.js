@@ -1,6 +1,8 @@
 import { derived } from "svelte/store";
 import { getStore } from "livestores";
 import { Properties } from "$/properties.rb"	
+import * as Constants from "$/constants.rb";
+Object.assign(globalThis, Constants)
 
 let currentTime = $state(new Date().getTime() / 1000);
 setInterval(() => {

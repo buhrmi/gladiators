@@ -52,7 +52,7 @@ export default defineConfig(({mode}) => ({
       autoexports: true,
       filters: ['return', 'functions', 'esm'],
       include: 'class',
-      underscored_private: true,
+      underscored_private: false,
     })
   ],
   build: {

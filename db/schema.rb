@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_01_120950) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_120950) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "race"
-    t.integer "exp"
+    t.integer "exp", default: 0
     t.integer "guild_id"
     t.integer "coppers", default: 0
     t.integer "level", default: 1
@@ -63,6 +63,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_120950) do
     t.string "target_type"
     t.boolean "won"
     t.json "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guilds", force: :cascade do |t|
+    t.string "name"
+    t.integer "coppers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
