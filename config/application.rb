@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Gladi
+module Gladiators
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
@@ -16,8 +16,13 @@ module Gladi
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    config.active_support.isolation_level = :fiber
+    config.i18n.available_locales = [ :en, :de ]
+    config.i18n.default_locale = :de
 
+    config.active_support.isolation_level = :fiber
+    config.autoload_paths << "#{config.root}/lib"
+
+    config.global_id.expires_in = nil
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

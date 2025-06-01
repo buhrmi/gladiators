@@ -1,0 +1,71 @@
+module Properties
+  def base_hp
+    10
+  end
+
+  def hp_per_level
+    2
+  end
+
+  def max_hp
+    base_hp + (self.level * hp_per_level)
+  end
+
+  def regenerated_hp
+    [ (current_time - start_regenerating_at) * hp_per_second, 0 ].max
+  end
+
+  def hp
+    [ 0, [ self.last_hp + regenerated_hp, max_hp ].min ].max
+  end
+
+  def hp_percent
+    hp.to_f / max_hp.to_f * 100
+  end
+
+  def hp=(new_hp)
+    self.last_hp_updated_at = current_time
+    self.last_hp = new_hp
+  end
+
+
+  def hp_per_second
+    1
+  end
+
+  def alive
+    hp > 0
+  end
+
+  def resurrection_wait_time
+    5
+  end
+
+  def regen_wait_time
+    5
+  end
+
+  def remaining_regen_wait_time
+    start_regenerating_at - current_time
+  end
+
+  def start_regenerating_at
+    if self.last_hp <= 0
+      self.last_hp_updated_at + resurrection_wait_time
+    else
+      self.last_hp_updated_at + regen_wait_time
+    end
+  end
+
+  def ressurection_in
+    if self.last_hp <= 0
+      [ start_regenerating_at - current_time, 0 ].max
+    else
+      0
+    end
+  end
+
+  def current_time
+    Time.current.to_f
+  end
+end

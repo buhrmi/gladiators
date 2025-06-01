@@ -4,4 +4,6 @@
   const { router } = getContext('inertia:_top');
 
   router.reload()
+
+  close()
 </script>

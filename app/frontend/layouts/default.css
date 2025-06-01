@@ -166,12 +166,28 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 100rem;
   width: 100%;
+  flex: 0;
 }
+
 .btn:disabled {
   background: var(--color-border);
   color: white;
   cursor: not-allowed;
 }
+
+.btn.attack { 
+  background-color: #e0505c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.nope, .btn.cancel {
+  border: 1px solid var(--color-link);
+  /* background-color: #eee; */
+  color: var(--color-link);
+}
+
 .btn.primary {
   background: linear-gradient(135deg, #417aed,#9c2eec 40%, #c32d7d);
   color: white;

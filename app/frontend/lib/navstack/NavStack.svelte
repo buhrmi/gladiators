@@ -21,6 +21,7 @@
     const href = ev.target.closest('[href]')?.getAttribute('href');
     if (href && !shouldIntercept(ev)) return;
     ev.preventDefault()
+  
     options = {
       src: href,
       group,
@@ -37,10 +38,7 @@
   export function pushWithoutHistory(options) {
     const group = options.group || 'root';
     groups[group] ||= []
-    groups[group].push({
-      id: Math.random().toString(36),
-      ...options
-    })
+    groups[group].push(options)
   }
 
   export function push(options) {
@@ -49,7 +47,6 @@
       arrive: () => {
         groups[group] ||= []
         groups[group].push({
-          id: Math.random().toString(36),
           canBeClosedByBackNavigation: true,
           ...options
         })
@@ -89,12 +86,14 @@
   export function replace(options) {
     const group = options.group || 'root';
     const oldGroup = groups[group]
+
     history.pushExternal(group == "root" ? options.src : '', {
       arrive: () => {
         groups[group] = [groups[group][0]]
         groups[group][0] = {
           ...groups[group][0],
-          ...options
+          ...options,
+          snippet: null
         }
       },
       recede: () => {
@@ -130,7 +129,6 @@
   groups.root = $state.snapshot(panes)
   groups.root.push({
     snippet: snippet || children,
-    id: Math.random().toString(36),
     src: $page.url,
     component,
     ...rest
@@ -145,10 +143,10 @@
       delay,
       duration,
       easing: cubicOut,
-      // tick: (t) => {
-      //   node.style.setProperty("--transition", t);
-      // },
-      css: (t) => `--transition: ${t}`
+      tick: (t) => {
+        node.style.setProperty("--transition", t);
+      },
+      // css: (t) => `--transition: ${t}`
     };
   }
 </script>
@@ -164,7 +162,7 @@
   role="presentation"
   {onclick}
   class:bottom={groups[group]?.length > i + 1}
-  transition:fly|local={{ x: '100%', opacity: 1, duration: 300, easing: sineOut }}
+  transition:fly|local={{ x: '100%', opacity: 1, duration: i > 0 ? 300 : 0, easing: sineOut }}
   >
   {#if group !== "root" || i > 0}
     <nav>
@@ -195,7 +193,7 @@
     <pane.component {...pane} {back} {close}/>
   {:else} 
     {""} <!-- without this empty string, we get hydration mismatch. no clue why. -->
-    <Frame {...pane} {onclick} {back} {close}/>
+    <Frame {...pane} {onclick} {back} {close} />
   {/if}
   </div>
 {/snippet}
@@ -208,7 +206,7 @@
       <div class="group_bg" transition:fade|global={{duration:200}}></div>
     {/if}
     <div class="group" transition:variable|global>
-      {#each panes as pane, i (pane.id)}
+      {#each panes as pane, i (pane.src + i)}
         {@render paneSnippet(group, i)}
       {/each}
     </div>

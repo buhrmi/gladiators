@@ -45,6 +45,10 @@ Here's how to set up a basic NavStack in your Svelte layout:
 <NavStack>  
   {@render children()} {/* This renders your current Inertia page as the first pane */}
 </NavStack>
+
+OR (simpler):
+
+<NavStack {children} />
 ```
 
 **What's happening here?**

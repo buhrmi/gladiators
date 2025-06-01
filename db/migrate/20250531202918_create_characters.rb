@@ -4,11 +4,15 @@ class CreateCharacters < ActiveRecord::Migration[8.0]
       t.string :name
       t.string :race
       t.integer :exp
+      t.integer :guild_id
       t.integer :coppers, default: 0
       t.integer :level, default: 1
-      t.integer :last_hp
+      t.integer :last_hp, default: 100
       t.integer :last_hp_updated_at
       t.integer :user_id
+
+      t.string :battle_cry
+      t.string :victory_cry
 
       t.timestamps
     end

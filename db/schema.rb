@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_31_202918) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_01_120950) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,9 +45,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_31_202918) do
     t.string "name"
     t.string "race"
     t.integer "exp"
+    t.integer "guild_id"
+    t.integer "coppers", default: 0
     t.integer "level", default: 1
-    t.integer "last_hp"
+    t.integer "last_hp", default: 100
     t.integer "last_hp_updated_at"
+    t.integer "user_id"
+    t.string "battle_cry"
+    t.string "victory_cry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fights", force: :cascade do |t|
+    t.integer "attacker_id"
+    t.integer "target_id"
+    t.string "target_type"
+    t.boolean "won"
+    t.json "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

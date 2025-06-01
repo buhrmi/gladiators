@@ -12,6 +12,7 @@ export default defineConfig(({mode}) => ({
     alias: {
       livestores: path.resolve(__dirname, 'app/frontend/lib/livestores'),
       navstack: path.resolve(__dirname, 'app/frontend/lib/navstack'),
+      $: __dirname + '/lib',
     },
     extensions: ['.rb', '.js.rb'].concat(
       ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
@@ -48,8 +49,10 @@ export default defineConfig(({mode}) => ({
     ruby2js({
       refresh: null,
       eslevel: 2021,
-      autoexports: 'default',
-      filters: ['return', 'functions']
+      autoexports: true,
+      filters: ['return', 'functions', 'esm'],
+      include: 'class',
+      underscored_private: true,
     })
   ],
   build: {

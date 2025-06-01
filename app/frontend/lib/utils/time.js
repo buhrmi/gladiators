@@ -72,3 +72,9 @@ const timeInWords = function (timeAgo) {
 };
 
 export {timeInWords};
+
+globalThis.Time = {
+  get current() {
+    return new Date().getTime() / 1000;
+  }
+}

@@ -1,4 +1,6 @@
 <script>
+  import { navstack } from 'navstack'
+
   const {
     characters
   } = $props();
@@ -7,34 +9,50 @@
 
 <main>
   <section>
-    <h1 class="mt-4">Gladiators Reloaded</h1>
+    <h2 class="mt-4">Ihr betretet die Arena</h2>
   </section>
   <section>
     <p>
-      Ihr betretet die Arena. Ihr könnt Euch nicht erinnern, warum Ihr hier seid. Doch im Getümmel könnt Ihr folgende Charaktere erkennen:
+      Ihr könnt Euch nicht erinnern, warum Ihr hier seid. Doch im Getümmel könnt Ihr einige Gestalten ausmachen:
     </p>
-    <table>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>Name</th>
-          <th>Rasse</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each characters as character}
-          <tr>
-            <td>{character.level}</td>
-            <td><a href="/characters/{character.id}" use:navstack={{
-              initialComponent: import("~/pages/characters/show.svelte"),
-              character
-            }}>{character.name}</a></td>
-            <td>{character.race}</td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-    
-  </section>
-</main>
+    <div class="arena">
+      {#each characters as character}
+        <div class="character_card">
+          <a href="/characters/{character.id}" class="character" use:navstack={{
+            initialComponent: import("~/pages/characters/show.svelte"),
+            character
+          }}>
+            <div class="name">{character.name}</div>
+            <div class="text-sm">Level {character.level} {character.race}</div>
+          </a>
+          <a href="/fights/new?target_id={character.id}" class="btn attack">
+            <div class="i-game-icons:sword-brandish w-1.7em h-1.7em"></div>
+            <div>
+              Angreifen
+            </div>
+          </a>
+        </div>
+      {/each}
+      </div>
+    </section>
+  </main>
+  
+  <style>
+    .arena {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+  .character_card {
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: 1em;
+    padding: 1em;
+  }
+  .character_card .character {
+    flex: 1;
+    text-decoration: none;
+  }
+
+
+</style>
