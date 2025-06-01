@@ -1,7 +1,7 @@
 <script>
   import { useForm, inertia } from "inertiax-svelte";
-  import Input from "~/lib/ui/Input.svelte";
-  import Password from "~/lib/ui/Password.svelte";
+  import Input from "~/components/Input.svelte";
+  import Password from "~/components/Password.svelte";
   import { onDestroy, onMount } from "svelte";
   import { navstack } from "navstack";
   const { flash, close } = $props();

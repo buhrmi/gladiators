@@ -1,6 +1,6 @@
 <script>
   import { useForm, inertia } from "inertiax-svelte";
-  import Input from "~/lib/ui/Input.svelte";
+  import Input from "~/components/Input.svelte";
   import { onDestroy, onMount } from "svelte";
   import { navstack } from "navstack";
 

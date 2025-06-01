@@ -22,6 +22,7 @@
       onfocus={() => (error = null)}
       placeholder=" "       
       autocomplete="off"
+      class:placeholder = {props.placeholder}
       {...props}
     ></textarea>
   {:else}
@@ -29,15 +30,16 @@
       bind:value
       bind:this={element}   
       onfocus={() => (error = null)}
-      placeholder=" "       
-      autocomplete="off"     
+      placeholder = " "       
+      autocomplete="off"
+      class:noplaceholder = {!props.placeholder}
       {...props}     
     />
   {/if}
 </label>
 
 <style>
-  input {
+input {
   width: 100%;
 }
 .input {
@@ -74,7 +76,6 @@
 }
 .input .helper {
   display: none;
- 
 }
 .input:has(input:not(:placeholder-shown)) {
   .helper {
@@ -90,11 +91,10 @@
     display: block;
   }
 }
-.input:has(input:placeholder-shown:not(:focus)) .label,
-.input:has(textarea:placeholder-shown:not(:focus)) .label { 
+.input:has(input.noplaceholder:placeholder-shown:not(:focus)) .label,
+.input:has(textarea.noplaceholder:placeholder-shown:not(:focus)) .label { 
   transform: translateY(1em);
 }
-
 input, textarea {
   background: transparent;
   border: none;

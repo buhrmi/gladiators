@@ -1,7 +1,7 @@
 <script>
   import { useForm } from 'inertiax-svelte';
 
-  import Password from '~/lib/ui/Password.svelte';
+  import Password from '~/components/Password.svelte';
 
   let {id} = $props()
 

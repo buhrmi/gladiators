@@ -1,7 +1,7 @@
 <script>
   import { useForm } from 'inertiax-svelte'
   import { getStore } from '~/lib/livestores'
-  import Input from '~/lib/ui/Input.svelte'
+  import Input from '~/components/Input.svelte'
   
   const { email } = $props()
 

@@ -1,8 +1,8 @@
 import { createInertiaApp } from 'inertiax-svelte'
 import { hydrate, mount } from "svelte";
 import resolve from "./util/resolve";
-import Toast, { showFlash } from "~/lib/ui/Toasts.svelte";
-import '~/lib/ui/loaders'
+import Toast, { showFlash } from "~/components/Toasts.svelte";
+import '~/components/loaders'
 
 import "virtual:uno.css"
 
