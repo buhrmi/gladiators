@@ -127,7 +127,8 @@
   } = $props();
 
   groups.root = $state.snapshot(panes)
-  groups.root.push({
+  
+  if (children || snippet) groups.root.push({
     snippet: snippet || children,
     src: $page.url,
     component,

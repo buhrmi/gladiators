@@ -68,7 +68,7 @@
             style="width: {Math.max(0, Math.min(100, ($character.hp / $character.max_hp) * 100))}%"
           ></div>
           <div class="hp-text">
-            HP: {Math.ceil($character.hp)} / {$character.max_hp}
+            HP: {Math.floor($character.hp)} / {$character.max_hp}
           </div>
         </div>
         {#if $character.hp <= 0}

@@ -32,7 +32,7 @@ module Properties
   end
 
   def resurrection_wait_time
-    5
+    10
   end
 
   def regen_wait_time

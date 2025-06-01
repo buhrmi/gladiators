@@ -49,7 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
     t.integer "coppers", default: 0
     t.integer "level", default: 1
     t.integer "last_hp", default: 100
-    t.integer "last_hp_updated_at"
+    t.integer "last_hp_updated_at", default: -> { "CURRENT_TIMESTAMP" }
     t.integer "user_id"
     t.string "battle_cry"
     t.string "victory_cry"
@@ -62,7 +62,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
     t.integer "target_id"
     t.string "target_type"
     t.boolean "won"
-    t.json "log"
+    t.json "logs", default: []
+    t.json "metadata", default: {}
+    t.json "attacker_snapshot", default: {}
+    t.json "target_snapshot", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,13 +9,15 @@
   function attack() {
     router.post("/fights", {
       target_id: target.id
+    }, {
+      preserveUrl: false
     })
   }
 </script>
 
 <main>
   <section class="py-2">
-    <h2 class="mb-2">Angriff auf {target.name}</h2>
+    <h2 class="mb-2">Wollt Ihr {target.name} angreifen?</h2>
     <p>
       Es geht heiß her. Plötzlich seht Ihr {target.name} vor Euch stehen, ein {target.race} der {target.level}. Stufe. Er hält ein Schwert in seiner Hand und grinst Euch an.
     </p>

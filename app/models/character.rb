@@ -26,11 +26,6 @@ class Character < ApplicationRecord
     CharacterChannel[self].store("character").merge saved_changes.transform_values(&:last)
   end
 
-  def last_hp=(val)
-    self[:last_hp] = val
-    self.last_hp_updated_at = current_time
-  end
-
   def exp=(new_exp)
     puts "Setting exp to #{new_exp} for character #{self.name} (#{self.id})"
     self[:exp] = new_exp

@@ -1,0 +1,5 @@
+de:
+  fight:
+    logs:
+      attack: "%{attacker} greift %{defender} mit %{weapon} an."
+      take_damage: "%{defender} erleided %{damage} %{dmg_type}."
