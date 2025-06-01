@@ -1,5 +1,11 @@
 class CharactersController < ApplicationController
   def index
+    @characters = Character.all.as_json(Character::JSON_OPTIONS)
+  end
+
+  def show
+    @panes = [ { src: "/" } ]
+    @character = Character.find(params[:id]).as_json(Character::JSON_OPTIONS)
   end
 
   def new

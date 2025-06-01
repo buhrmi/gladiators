@@ -38,26 +38,31 @@
     })
   }
 
-
-  subscribe('GlobalChannel', { subject: 'game' })
 </script>
 
 <header class="px-4 py-2 md:flex-col h-full">
   <menu class="md:w-full">
     {#if character_sgid}
       {#if $character}
-        {$character.name}
+      <div class="character">
+        <div class="name">
+          {$character.name}<br>
+        </div>
+        <div class="details">
+          {$character.race}, Level {$character.level}
+        </div>
+      </div>
       {:else}
-      <div class="spinner"></div>
+        <div class="spinner"></div>
       {/if}
     {:else}
-    <button class="btn primary" use:navstack={{
-        group: "user",
-        initialComponent: import("~/pages/characters/new.svelte"),
-        initialPage: {url: "/characters/new"}
-    }}>
-      Charakter erstellen
-    </button>
+      <button class="btn primary" use:navstack={{
+          group: "user",
+          initialComponent: import("~/pages/characters/new.svelte"),
+          initialPage: {url: "/characters/new"}
+      }}>
+        Charakter erstellen
+      </button>
     {/if}
     <!-- {#if $current_user}
       <button id="user" use:navstack={{
@@ -106,7 +111,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* padding: 0.5rem; */
     font-size: 0.875rem;
   }
   @media (min-width: 768px) {
@@ -114,11 +118,16 @@
       flex-direction: row;
       gap: 0.5rem;
       font-size: 1em;
-      /* border: 1px solid #ccc; */
+      padding: 0.5rem 1rem;
       border-radius: 3rem;
     }
     nav a:hover {
       background: #f0f0f0;
     }
+  }
+  .character {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background: #f0f0f0;
   }
 </style>

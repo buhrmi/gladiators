@@ -5,14 +5,17 @@ import UnoCSS from 'unocss/vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 import env from 'vite-plugin-environment'
-
+import ruby2js from '@ruby2js/vite-plugin';
 
 export default defineConfig(({mode}) => ({
   resolve: {
     alias: {
       livestores: path.resolve(__dirname, 'app/frontend/lib/livestores'),
       navstack: path.resolve(__dirname, 'app/frontend/lib/navstack'),
-    }
+    },
+    extensions: ['.rb', '.js.rb'].concat(
+      ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+    )
   },
 
   server: {
@@ -41,6 +44,12 @@ export default defineConfig(({mode}) => ({
       project: "gladi",
       telemetry: false,
       disable: mode !== 'production',
+    }),
+    ruby2js({
+      refresh: null,
+      eslevel: 2021,
+      autoexports: 'default',
+      filters: ['return', 'functions']
     })
   ],
   build: {

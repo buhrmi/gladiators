@@ -11,6 +11,11 @@
   --color-brand: rgb(247, 77, 205);
 }
 
+th {
+  text-align: left;
+  font-weight: normal;
+}
+
 body {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
