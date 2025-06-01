@@ -1,0 +1,4 @@
+web: itsi
+vite: bin/shims/vite dev
+ssr: bin/ssr-dev
+redis: redis-server

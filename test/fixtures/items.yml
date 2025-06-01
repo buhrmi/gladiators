@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slot: MyString
+  stats: 
+  level: 1
+
+two:
+  name: MyString
+  slot: MyString
+  stats: 
+  level: 1

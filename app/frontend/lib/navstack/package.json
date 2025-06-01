@@ -1,0 +1,25 @@
+{
+  "name": "inertiax-navstack",
+  "version": "0.0.5",
+  "description": "A NavStack implementation for Inertia X",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "navstack",
+    "modal",
+    "inertia"
+  ],
+  "author": "Stefan Buhrmester",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buhrmi/gladi",
+    "directory": "app/frontend/lib/navstack"
+  },
+  "peerDependencies": {
+    "inertiax-core": "^10.0.0-beta.9",
+    "svelte": "^5.0.0"
+  }
+}

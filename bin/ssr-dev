@@ -1,0 +1,27 @@
+#!/bin/sh
+
+sigint_handler()
+{
+  kill $PID
+  exit
+}
+
+trap sigint_handler SIGINT
+
+lsof -t -i tcp:13714 | xargs kill
+
+while true; do
+  
+  RAILS_ENV=development ./bin/shims/vite build --ssr --mode=development #s> /dev/null 2>&1
+  # RAILS_ENV=development deno --allow-net ./public/vite-ssr/ssr.js &
+  # RAILS_ENV=development bun ./public/vite-ssr/ssr.js &
+  RAILS_ENV=development bun ./public/vite-ssr/ssr.js &
+  PID=$!
+  
+  if [ "$(uname)" = "Linux" ]; then
+    inotifywait -e modify -e move -e create -e delete -e attrib -r app/frontend
+  elif [ "$(uname)" = "Darwin" ]; then
+    fswatch -1 -r app/frontend
+  fi
+  kill $PID
+done
