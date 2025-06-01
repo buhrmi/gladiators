@@ -69,7 +69,7 @@ gem "sentry-rails"
 
 gem "httparty"
 gem "geocoder", "~> 1.8"
-gem "closure_tree", "~> 7.4"
+gem "closure_tree", "~> 8.0"
 gem "ruby-oembed", "~> 0.18.0"
 
 gem "money-tree", "~> 0.11.2"

@@ -105,9 +105,9 @@ GEM
       xpath (~> 3.2)
     childprocess (5.1.0)
       logger (~> 1.5)
-    closure_tree (7.4.0)
-      activerecord (>= 4.2.10)
-      with_advisory_lock (>= 4.0.0)
+    closure_tree (8.0.0)
+      activerecord (>= 7.1.0)
+      with_advisory_lock (>= 5.0.0, < 6.0.0)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -429,7 +429,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
-  closure_tree (~> 7.4)
+  closure_tree (~> 8.0)
   cuprite
   debug
   dotenv
