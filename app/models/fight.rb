@@ -19,9 +19,7 @@ class Fight < ApplicationRecord
   after_create_commit :broadcast_attack_block
 
   def broadcast_attack_block
-    CharacterChannel[self.attacker].store("last_attacks").merge({
-      self.target.id => self.created_at.to_i
-    })
+    CharacterChannel[self.attacker].state([ :last_attacks, self.target_id ]).set(self.created_at.to_i)
   end
 
   def round

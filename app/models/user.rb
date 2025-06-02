@@ -61,7 +61,7 @@ class User < ApplicationRecord
 
   def broadcast_changes
     changes = self.saved_changes.transform_values(&:last)
-    UserChannel[self].store("current_user").merge(changes)
+    UserChannel[self].state("current_user").merge(changes)
   end
 
   def load_profile_image_from_gravatar

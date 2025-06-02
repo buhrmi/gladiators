@@ -19,7 +19,7 @@
   import character from '~/lib/character.svelte';
   import { derived } from 'svelte/store';
 
-  import { subscribe, reset as resetStores, reconnect } from 'livestores'
+  import { subscribe, reset as resetStores } from 'activestate'
   import { NavStack, reset as resetNav, navstack, pushWithoutHistory } from "navstack";
   
   let {
@@ -38,15 +38,14 @@
   let subscribedId = null;
   $effect(() => {
     if (subscribedId == character_sgid) return;
-    reconnect();
-    if (character_sgid) {
-      subscribedId = character_sgid;
-      unsubscribe = subscribe("CharacterChannel", { character_sgid });
-    }
-    else if (unsubscribe) {
+    if (unsubscribe) {
       unsubscribe();
       unsubscribe = null;
       character.set(null);
+    }
+    if (character_sgid) {
+      subscribedId = character_sgid;
+      unsubscribe = subscribe("CharacterChannel", { character_sgid });
     }
   });
 

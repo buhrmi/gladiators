@@ -1,5 +1,5 @@
-import { derived, get } from "svelte/store";
-import { getStore } from "livestores";
+import { derived, toStore } from "svelte/store";
+import { State } from "activestate";
 import { Properties } from "$/properties.rb"
 import { Methods } from "$/methods.rb";	
 import * as Constants from "$/constants.rb";
@@ -10,12 +10,30 @@ setInterval(() => {
   currentTime = new Date().getTime() / 1000;
 }, 100);
 
-export default derived(getStore("character"), augment)
+export default derived(toStore(() => State.character), augment)
+
+const augmentedPool = {}
+State.characters = {}
+const characterUpdates = toStore(() => State.characters);
+characterUpdates.subscribe($updates => {
+  if (!$updates) return
+  console.log("Character updates received:", $updates);
+  Object.entries($updates).forEach(([id, update]) => {
+    if (!augmentedPool[id]) return;
+    Object.assign(augmentedPool[id], update)
+  })
+});
+
 
 // augments a raw json character object with properties and methods defined in properties.rb
 export function augment(rawCharacter) {
   if (!rawCharacter) return null;
-  
+  if (rawCharacter.augmented) return rawCharacter;
+  if (augmentedPool[rawCharacter.id]) {
+    const augmentedCharacter = augmentedPool[rawCharacter.id];
+    Object.assign(augmentedCharacter, rawCharacter);
+    return augmentedCharacter
+  }
   Object.setPrototypeOf(rawCharacter, Methods);
   Object.defineProperties(rawCharacter, Object.getOwnPropertyDescriptors(Properties)) 
   Object.defineProperties(rawCharacter, Object.getOwnPropertyDescriptors({
@@ -25,7 +43,8 @@ export function augment(rawCharacter) {
       enumerable: true
     }
   ));
-
+  rawCharacter.augmented = true;
+  augmentedPool[rawCharacter.id] = rawCharacter;
   return rawCharacter;
 }
 

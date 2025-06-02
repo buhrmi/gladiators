@@ -14,6 +14,7 @@ class FightsController < ApplicationController
   end
 
   def show
+    @panes = [ { src: "/" } ]
     @fight = Fight.find(params[:id]).as_json(Fight::JSON_OPTIONS)
   end
 end

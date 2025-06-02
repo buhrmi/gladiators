@@ -10,7 +10,7 @@ import ruby2js from '@ruby2js/vite-plugin';
 export default defineConfig(({mode}) => ({
   resolve: {
     alias: {
-      livestores: path.resolve(__dirname, 'app/frontend/lib/livestores'),
+      activestate: path.resolve(__dirname, 'app/frontend/lib/activestate'),
       navstack: path.resolve(__dirname, 'app/frontend/lib/navstack'),
       $: __dirname + '/lib',
     },

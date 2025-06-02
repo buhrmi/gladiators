@@ -1,27 +1,17 @@
 <script>
-  import character, {Time, augment} from "~/lib/character.svelte.js"
-  import { getStore } from "livestores";
-  import { untrack } from "svelte"
+  import character, { augment } from "~/lib/character.svelte.js"
+  import { State } from "activestate";
 
   const {
-    characters: rawCharacters
+    characters
   } = $props();
 
-  const characters = rawCharacters.map(c => augment(c));
-  const characterUpdates = getStore("characters", [])
-  const lastAttacks = getStore("last_attacks", {});
-
-  $effect(() => {
-    console.log('updating')
-    characters.map(c => {
-      const update = $characterUpdates.find(u => u.id === c.id);
-      Object.assign(c, update);
-    })
-  });
+  State.last_attacks ||= {}
+  const lastAttacks = $derived(State.last_attacks);
 
   function canAttack(c) {
     let res = true
-    if (c.attack_forbidden($lastAttacks[c.id])) res = false
+    if (c.attack_forbidden(lastAttacks[c.id])) res = false
     if (c.id == $character?.id) res = false
     if (c.hp <= 0) res = false
     return res
@@ -35,15 +25,16 @@
       Ihr könnt Euch nicht erinnern, wie Ihr hier gelandet seid. Im Getümmel der Arena könnt Ihr einige Gestalten ausmachen:
     </p>
     <div class="arena">
-      {#each characters as character}
+      {#each characters as c}
+        {@const character = augment(c)}
         <div class="character_card">
           <a href="/characters/{character.id}" class="character">
             <div class="name">{character.name}</div>
-            <div class="text-sm">HP: {Math.ceil(character.hp)} / {character.max_hp}</div>
             <div class="text-sm">Level {character.level} {character.race}</div>
+            <div class="text-sm">HP: {Math.ceil(character.hp)} / {character.max_hp}</div>
             <div class="text-sm">
-              {#if character.attack_forbidden($lastAttacks[character.id])}
-                Angriffssperre {Math.round(character.remaining_attack_forbidden($lastAttacks[character.id]))} Sekunden
+              {#if character.attack_forbidden(lastAttacks[character.id])}
+                Angriffssperre {Math.round(character.remaining_attack_forbidden(lastAttacks[character.id]))} Sekunden
               {/if}
             </div>
           </a>

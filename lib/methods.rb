@@ -1,6 +1,6 @@
 module Methods
   def attack_forbidden_duration
-    5
+    60
   end
 
   def remaining_attack_forbidden(time)

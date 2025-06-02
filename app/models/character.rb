@@ -26,15 +26,14 @@ class Character < ApplicationRecord
   after_update_commit :broadcast_update
 
   def broadcast_update
-    CharacterChannel[self].store("character").merge saved_changes.transform_values(&:last)
+    CharacterChannel[self].state("character").merge saved_changes.transform_values(&:last)
     updates = {
       exp: self.exp,
       last_hp: self.last_hp,
       last_hp_updated_at: self.last_hp_updated_at,
-      level: self.level,
-      id: self.id
+      level: self.level
     }
-    ArenaChannel["public"].store("characters").upsert [ updates ]
+    ArenaChannel["public"].state([ "characters", id ]).merge updates
   end
 
   def exp=(new_exp)
