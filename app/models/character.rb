@@ -1,5 +1,6 @@
 class Character < ApplicationRecord
-  include FightLogic
+  include Properties
+  include Methods
 
   JSON_OPTIONS = {
     only: [ :id, :name, :level, :race, :last_hp, :last_hp_updated_at, :exp ]
@@ -16,6 +17,8 @@ class Character < ApplicationRecord
 
   has_many :character_items, dependent: :destroy
   has_many :items, through: :character_items, dependent: :destroy
+  has_many :attacking_fights, class_name: "Fight", foreign_key: "attacker_id", dependent: :destroy
+  has_many :targeting_fights, class_name: "Fight", foreign_key: "target_id", dependent: :destroy
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 24 }
   validates :race, presence: true, inclusion: { in: %w[human elf dwarf orc] }
@@ -24,11 +27,23 @@ class Character < ApplicationRecord
 
   def broadcast_update
     CharacterChannel[self].store("character").merge saved_changes.transform_values(&:last)
+    updates = {
+      exp: self.exp,
+      last_hp: self.last_hp,
+      last_hp_updated_at: self.last_hp_updated_at,
+      level: self.level,
+      id: self.id
+    }
+    ArenaChannel["public"].store("characters").upsert [ updates ]
   end
 
   def exp=(new_exp)
-    puts "Setting exp to #{new_exp} for character #{self.name} (#{self.id})"
     self[:exp] = new_exp
     self.level = calculate_level
+  end
+
+  def hp=(value)
+    self.last_hp = value
+    self.last_hp_updated_at = Time.current
   end
 end

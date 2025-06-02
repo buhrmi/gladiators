@@ -1,3 +1,16 @@
+<script module>
+  export function login() {
+    let url = "/session/new?provider=discord"
+    let height = 820
+    let width = 520
+    var left = ( screen.width - width ) / 2
+    var top = ( screen.height - height ) / 2
+    window.open( url, "Log in to Gladiators Reloaded", 'resizable=1,scrollbars=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left)
+  }
+
+  subscribe("ArenaChannel")
+</script>
+
 <script>
   import "@unocss/reset/tailwind.css";
 
@@ -8,7 +21,6 @@
 
   import { subscribe, reset as resetStores, reconnect } from 'livestores'
   import { NavStack, reset as resetNav, navstack, pushWithoutHistory } from "navstack";
-
   
   let {
     children,
@@ -107,13 +119,13 @@
       }}>
         Char erstellen
       </button>
-      oder
-      <button class="btn secondary" use:navstack={{
-          group: "user",
-          initialComponent: import("~/pages/sessions/new.svelte")
-      }}>
-        Einloggen
-      </button>
+      <div class="whitespace-nowrap">
+        oder 
+        <button onclick={login}>
+          einloggen
+        </button>
+
+      </div>
     </div>
   {/if}
 </header>
@@ -129,7 +141,7 @@
       </a>
     </li>
         <li>
-      <a href="/guilds" use:navstack={{ replace: true }}>
+      <a href="/guild" use:navstack={{ replace: true }}>
         <div class="i-game-icons:barracks-tent w-1.8em h-1.8em"></div>
         <div>
           Gilde
@@ -217,9 +229,8 @@
   }
   .character {
     padding: 0.5rem 1rem;
-    background: #cbcbcb;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    /* background: #cbcbcb; */
+    border-bottom: 1px solid var(--color-border);
     width: 100%;
   }
 </style>

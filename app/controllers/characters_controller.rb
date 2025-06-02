@@ -9,6 +9,7 @@ class CharactersController < ApplicationController
   end
 
   def new
+    launch_in_modal
   end
 
   def create

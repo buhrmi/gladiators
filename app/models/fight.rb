@@ -1,6 +1,6 @@
 class Fight < ApplicationRecord
   JSON_OPTIONS = {
-    only: [ :id, :logs, :won, :created_at ],
+    only: [ :id, :logs, :won, :created_at, :metadata ],
     include: {
       attacker: Character::JSON_OPTIONS,
       target: Character::JSON_OPTIONS
@@ -16,25 +16,61 @@ class Fight < ApplicationRecord
     [ attacker, target ]
   end
 
+  after_create_commit :broadcast_attack_block
+
+  def broadcast_attack_block
+    CharacterChannel[self.attacker].store("last_attacks").merge({
+      self.target.id => self.created_at.to_i
+    })
+  end
+
+  def round
+    @round || 0
+  end
+
   def execute!
-    Current.fight = self
+    self.rewards[0] = {
+      exp: participants[1].exp_reward,
+      coppers: participants[1].coppers_reward
+    }
+
+    self.rewards[1] = {
+      exp: participants[0].exp_reward,
+      coppers: participants[0].coppers_reward
+    }
 
     while participants.all?(&:alive)
+      @round = @round ? @round + 1 : 0
       attack(0, 1)
       if participants.all?(&:alive)
         attack(1, 0)
       end
     end
 
+    # if you die u get nothing
+    rewards[0] = {} unless participants[0].alive
+    rewards[1] = {} unless participants[1].alive
+
     self.won = attacker.alive
 
-    loser.update! last_hp: loser.hp
-    winner.update!(
-      last_hp: winner.hp,
-      exp: winner.exp + loser.exp_reward,
-      coppers: winner.coppers + loser.coppers_reward
-    )
+    participants.each_with_index do |participant, idx|
+      participant.last_hp = participant.hp
+      rewards = self.rewards[idx]
+      participant.exp += rewards[:exp] if rewards[:exp]
+      participant.coppers += rewards[:coppers] if rewards[:coppers]
+      participant.save!
+      if participant.saved_change_to_level?
+        rewards[:level] = 1
+        log({ event: "level_up", char_idx: idx, new_level: participant.level })
+      end
+    end
+
     self.save!
+  end
+
+  # rewards by participant index
+  def rewards
+    metadata[:rewards] ||= []
   end
 
   def winner
@@ -46,7 +82,8 @@ class Fight < ApplicationRecord
   end
 
   def log(json)
-    self.logs << json
+    self.logs[round] ||= []
+    self.logs[round] << json
   end
 
   def attack(attacker_idx, target_idx)
@@ -55,6 +92,6 @@ class Fight < ApplicationRecord
     log({ event: "attack", attacker_idx:, target_idx: })
     damage = rand(3..6)
     target.hp -= damage
-    log({ event: "damage", damage: damage, target_idx: })
+    log({ event: "damage", damage: damage, dmg_type: "slash", target_idx: })
   end
 end

@@ -32,7 +32,7 @@ module Properties
   end
 
   def resurrection_wait_time
-    10
+    20
   end
 
   def regen_wait_time
@@ -76,5 +76,21 @@ module Properties
       return level-1 if self.exp < EXP_TABLE[level]
     end
     MAX_LEVEL
+  end
+
+  def exp_reward
+    reward = (exp_to_next_level ** 0.7).round
+    reward /= 2 if hp < max_hp
+    reward = (reward * (hp.to_f / max_hp)).floor
+    reward
+  end
+
+  def coppers_reward
+    min = 4 * (self.level + 1) / 2
+    max = 6 * (self.level + 1) / 2
+    reward = rand(min..max)
+    reward /= 2 if hp < max_hp
+    reward = (reward * (hp.to_f / max_hp)).floor
+    reward
   end
 end

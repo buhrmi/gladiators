@@ -67,11 +67,6 @@ gem "stackprof"
 gem "sentry-ruby"
 gem "sentry-rails"
 
-gem "httparty"
-gem "geocoder", "~> 1.8"
-gem "closure_tree", "~> 7.4"
-gem "ruby-oembed", "~> 0.18.0"
-
-gem "money-tree", "~> 0.11.2"
-
-gem "bitcoin", "~> 0.2.0"
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-discord"

@@ -7,8 +7,6 @@ class CreateFights < ActiveRecord::Migration[8.0]
       t.boolean :won
       t.json :logs, default: []
       t.json :metadata, default: {}
-      t.json :attacker_snapshot, default: {}
-      t.json :target_snapshot, default: {}
 
       t.timestamps
     end

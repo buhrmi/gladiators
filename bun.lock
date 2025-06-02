@@ -6,6 +6,7 @@
         "@ruby2js/vite-plugin": "^0.0.3",
         "@sentry/vite-plugin": "^3.5.0",
         "inertiax-svelte": "^10.0.0-beta.13",
+        "svelte-confetti-explosion": "^0.4.0",
       },
       "devDependencies": {
         "@iconify/json": "^2.2.343",
@@ -553,6 +554,8 @@
     "source-map-js": ["source-map-js@1.2.1", "", {}, "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="],
 
     "svelte": ["svelte@5.33.11", "", { "dependencies": { "@ampproject/remapping": "^2.3.0", "@jridgewell/sourcemap-codec": "^1.5.0", "@sveltejs/acorn-typescript": "^1.0.5", "@types/estree": "^1.0.5", "acorn": "^8.12.1", "aria-query": "^5.3.1", "axobject-query": "^4.1.0", "clsx": "^2.1.1", "esm-env": "^1.2.1", "esrap": "^1.4.6", "is-reference": "^3.0.3", "locate-character": "^3.0.0", "magic-string": "^0.30.11", "zimmerframe": "^1.1.2" } }, "sha512-BVnvd6T3OShNvsRwYPXdseSO5rnQ4SljmhLVCCpBX1nEQI+e2TopOlazo4z+1+aUukyHZxlIVg3hpZ5TMugrMQ=="],
+
+    "svelte-confetti-explosion": ["svelte-confetti-explosion@0.4.0", "", {}, "sha512-EifYXjcNzcfrQ4gFLsjxEe5j5aGBZNnEJm+qA025LuZp7bD4YbCLNExNYvvenre3UnwVWGv3E8cTzjO1W01Ckw=="],
 
     "tinyexec": ["tinyexec@0.3.2", "", {}, "sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA=="],
 
