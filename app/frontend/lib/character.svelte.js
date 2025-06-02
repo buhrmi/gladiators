@@ -1,5 +1,5 @@
 import { derived, toStore } from "svelte/store";
-import { State } from "activestate";
+import { State, registerMutator, registerHook } from "activestate";
 import { Properties } from "$/properties.rb"
 import { Methods } from "$/methods.rb";	
 import * as Constants from "$/constants.rb";
@@ -13,17 +13,13 @@ setInterval(() => {
 export default derived(toStore(() => State.character), augment)
 
 const augmentedPool = {}
-State.characters = {}
-const characterUpdates = toStore(() => State.characters);
-characterUpdates.subscribe($updates => {
-  if (!$updates) return
-  console.log("Character updates received:", $updates);
-  Object.entries($updates).forEach(([id, update]) => {
-    if (!augmentedPool[id]) return;
-    Object.assign(augmentedPool[id], update)
-  })
-});
-
+// whenever we receive a character update, intercept it and update the character
+// in our pool of augmented characters
+registerHook('characters.', function(path, action, data) {
+  const id = path[1]
+  if (augmentedPool[id]) Object.assign(augmentedPool[id], data);
+  return false
+})
 
 // augments a raw json character object with properties and methods defined in properties.rb
 export function augment(rawCharacter) {

@@ -1,0 +1,5 @@
+de:
+  notifications:
+    level_up:
+      title: "Level Up!"
+      message: "%{name} erreicht Stufe %{level}!"

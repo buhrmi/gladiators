@@ -1,7 +1,7 @@
 import { createInertiaApp } from 'inertiax-svelte'
 import { hydrate, mount } from "svelte";
 import resolve from "./util/resolve";
-import Toast, { showFlash } from "~/components/Toasts.svelte";
+import Toast from "~/components/Toasts.svelte";
 import '~/components/loaders'
 
 import "virtual:uno.css"
@@ -26,7 +26,7 @@ window.addEventListener('wheel', function(e) {
 
 document.addEventListener("inertia:success", (event) => {
   const flash = event.detail.page.props.flash;
-  showFlash(flash);
+  // showFlash(flash);
 })
 
 mount(Toast, {

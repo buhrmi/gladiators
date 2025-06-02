@@ -24,6 +24,17 @@ class Character < ApplicationRecord
   validates :race, presence: true, inclusion: { in: %w[human elf dwarf orc] }
 
   after_update_commit :broadcast_update
+  after_update_commit :check_level_up
+
+  def check_level_up
+    if saved_change_to_level?
+      CharacterChannel[self].state("toasts").push({
+        type: "level_up",
+        message: I18n.t("notifications.level_up.message", level: self.level, name: self.name),
+        title: I18n.t("notifications.level_up.title")
+      })
+    end
+  end
 
   def broadcast_update
     CharacterChannel[self].state("character").merge saved_changes.transform_values(&:last)

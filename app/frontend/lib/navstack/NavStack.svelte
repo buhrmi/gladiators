@@ -101,13 +101,6 @@
       }
     })
   }
-
-  export function reset() {
-    for (const group in groups) {
-      delete groups[group]
-    }
-  }
-
 </script>
 
 <script>
