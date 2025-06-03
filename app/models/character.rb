@@ -37,14 +37,14 @@ class Character < ApplicationRecord
   end
 
   def broadcast_update
-    CharacterChannel[self].state("character").merge saved_changes.transform_values(&:last)
+    CharacterChannel[self].state("character").assign(saved_changes.transform_values(&:last))
     updates = {
       exp: self.exp,
       last_hp: self.last_hp,
       last_hp_updated_at: self.last_hp_updated_at,
       level: self.level
     }
-    ArenaChannel["public"].state([ "characters", id ]).merge updates
+    ArenaChannel["public"].state([ "characters", id ]).assign(updates)
   end
 
   def exp=(new_exp)

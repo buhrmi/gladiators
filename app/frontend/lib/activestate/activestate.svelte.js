@@ -11,7 +11,7 @@ const mutators = {
   set(path, data) {
     set(State, path, data);
   },
-  merge(path, data) {
+  assign(path, data) {
     set(State, path, data, {merge: true});
   },
   upsert(path, data) {
