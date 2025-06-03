@@ -1,8 +1,8 @@
 # Gladiators Reloaded
 
-<img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
-
 An open-source remake (or rather, continuation, or "spiritual successor") of the OG Gladiators 2 from 2004.
+
+<img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
 
 ### Here are some interesting finds on the wayback machine:
 
