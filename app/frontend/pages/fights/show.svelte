@@ -6,8 +6,9 @@
     fight
   } = $props();
 
-  const attacker = augment(fight.attacker);
-  const target = augment(fight.target);
+  // const attacker = augment(fight.attacker);
+  // const target = augment(fight.target);
+  const { attacker, target } = fight
   const rewards = fight.metadata.rewards;
 
   const participants = [attacker, target]

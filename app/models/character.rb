@@ -42,9 +42,10 @@ class Character < ApplicationRecord
       exp: self.exp,
       last_hp: self.last_hp,
       last_hp_updated_at: self.last_hp_updated_at,
-      level: self.level
+      level: self.level,
+      id: self.id
     }
-    ArenaChannel["public"].state([ "characters", id ]).assign(updates)
+    ArenaChannel["public"].state("updates").push(updates)
   end
 
   def exp=(new_exp)
