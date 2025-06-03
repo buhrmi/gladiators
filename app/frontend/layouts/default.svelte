@@ -16,7 +16,7 @@
 
   import './default.css';
 
-  import character from '~/lib/character.svelte';
+  import { get } from '~/lib/character.svelte';
   import { derived } from 'svelte/store';
 
   import { subscribe, State } from 'activestate'
@@ -28,7 +28,6 @@
     flash,
     panes = [],
   } = $props();
-
   
   let unsubscribe = null;
   let subscribedId = null;
@@ -37,7 +36,6 @@
     if (unsubscribe) {
       unsubscribe();
       unsubscribe = subscribedId = null;
-      State.character = null;
     }
     if (character_sgid) {
       subscribedId = character_sgid;
@@ -52,44 +50,45 @@
     })
   }
 
-  // split $character.coppers into gold, silver, and coppers, each 100 units
-  const coppers = $derived(($character?.coppers || 0) % 100);
-  const silver = $derived(Math.floor(($character?.coppers || 0) / 100) % 100);
-  const gold = $derived(Math.floor(($character?.coppers || 0) / 10000));
-
+  const character = $derived(get(State.character_id))
+  
+  // split character.coppers into gold, silver, and coppers, each 100 units
+  const coppers = $derived((character?.coppers || 0) % 100);
+  const silver = $derived(Math.floor((character?.coppers || 0) / 100) % 100);
+  const gold = $derived(Math.floor((character?.coppers || 0) / 10000));
 </script>
 
 <header class="md:flex-col h-full">
-  {#if $character}
+  {#if character}
     <div class="character">
       <div class="name">
-        {$character.name}<br>
+        {character.name}<br>
       </div>
       <div class="details">
-        Level {$character.level} {$character.race}
+        Level {character.level} {character.race}
       </div>
       <div class="hp">
         <div class="hp-bar-container">
           <div
             class="hp-bar"
-            style="width: {Math.max(0, Math.min(100, ($character.hp / $character.max_hp) * 100))}%"
+            style="width: {Math.max(0, Math.min(100, (character.hp() / character.max_hp()) * 100))}%"
           ></div>
           <div class="hp-text">
-            HP: {Math.floor($character.hp)} / {$character.max_hp}
+            HP: {Math.floor(character.hp())} / {character.max_hp()}
           </div>
         </div>
-        {#if $character.hp <= 0}
-          <span>Wiederbelebung in {Math.ceil($character.ressurection_in)}</span>
+        {#if character.hp() <= 0}
+          <span>Wiederbelebung in {Math.ceil(character.ressurection_in())}</span>
         {/if}
       </div>
       <div class="exp">
         <div class="exp-bar-container">
           <div
         class="exp-bar"
-        style="width: {Math.max(0, Math.min(100, ($character.exp_on_this_level / $character.exp_to_next_level) * 100))}%"
+        style="width: {Math.max(0, Math.min(100, (character.exp_on_this_level() / character.exp_to_next_level()) * 100))}%"
           ></div>
           <div class="exp-text">
-        EXP: {Math.floor($character.exp_on_this_level)} / {$character.exp_to_next_level}
+        EXP: {Math.floor(character.exp_on_this_level())} / {character.exp_to_next_level()}
           </div>
         </div>
       </div>
@@ -151,57 +150,61 @@
 </main>
 
 <style>
-  .hp-bar-container {
-    width: 100%;
-    height: 1.2em;
-    background: #630505;
-    border-radius: 0.6em;
-    overflow: hidden;
-    margin-bottom: 0.3em;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    position: relative; /* Added for positioning context */
-  }
-  .hp-bar {
-    height: 100%;
-    background: linear-gradient(#f87171 0%, #bd2605 100%);
-    transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
-  }
-  .hp-text { /* New style for the HP text */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: white; /* Or any color that contrasts well with your bar */
-    font-size: 0.8em; /* Adjust as needed */
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5); /* Optional: for better readability */
-    pointer-events: none; /* To allow clicks to pass through to the bar if needed */
-  }
+  /* Common styles for bar containers */
+  .hp-bar-container,
   .exp-bar-container {
     width: 100%;
-    height: 1.2em;
-    background: #530272;
+    height: 1.4em;
     border-radius: 0.6em;
     overflow: hidden;
     margin-bottom: 0.3em;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    position: relative; /* Added for positioning context */
+    position: relative;
   }
+
+  /* Specific background for HP bar container */
+  .hp-bar-container {
+    background: #630505;
+  }
+
+  /* Specific background for EXP bar container */
+  .exp-bar-container {
+    background: #530272;
+  }
+
+  /* Common styles for the actual bars (fill) */
+  .hp-bar,
   .exp-bar {
     height: 100%;
-    background: linear-gradient(#a78bfa 0%, #6d28d9 100%);
     transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
   }
-  .exp-text { /* New style for the EXP text */
+
+  /* Specific background for HP bar */
+  .hp-bar {
+    background: linear-gradient(#f87171 0%, #bd2605 100%);
+  }
+
+  /* Specific background for EXP bar */
+  .exp-bar {
+    background: linear-gradient(#a78bfa 0%, #6d28d9 100%);
+  }
+
+  /* Common styles for text overlay */
+  .hp-text,
+  .exp-text {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Ensure it covers the entire bar */
-    text-align: center; /* Center the text */
-    color: white; /* Or any color that contrasts well with your bar */
-    font-size: 0.8em; /* Adjust as needed */
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5); /* Optional: for better readability */
-    pointer-events: none; /* To allow clicks to pass through to the bar if needed */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    pointer-events: none;
   }
 
   nav a {

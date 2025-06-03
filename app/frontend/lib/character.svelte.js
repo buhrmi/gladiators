@@ -1,58 +1,43 @@
-import { toStore } from "svelte/store";
 import { State } from "activestate";
 
+import Time from "~/lib/time.svelte.js";
+
 // Isomorphic logic shared between ruby and js
-import { Properties } from "$/properties.rb"
-import { Methods } from "$/methods.rb";	
+import {Formulas} from "$/formulas.rb"
+
+// formulas.rb relies on constants.rb being available globally.
 import * as Constants from "$/constants.rb";
 Object.assign(globalThis, Constants)
 
-// It's not possible to change the prototype of objects inside ActiveState's State,
-// so we create an extra pool where we store the augmented characters.
-const characterPool = {}
+const augmentedCharacters = {};
 State.updates = [];
-
-let currentTime = $state(new Date().getTime() / 1000);
-setInterval(() => {
-  currentTime = new Date().getTime() / 1000;
-}, 100);
-
-
-const augmentedChar = $derived(augment(State.character))
-export default toStore(() => augmentedChar);
 
 // Whenever we receive updates from the server, we apply them to the character pool.
 $effect.root(() => {
   $effect(() => {
-    State.updates.splice(0).forEach((update) => {
-      if (!characterPool[update.id]) return;
-      Object.assign(characterPool[update.id], update)
-    })
+    State.updates.splice(0).forEach(augment)
   })
 });
 
 // creates an augmented version of the raw json character, adds it to the character pool, and returns it
-export function augment(rawCharacter) {
-  if (!rawCharacter) return null;
+export function augment(character) {
+  if (!character) return null;
 
-  // check if we already have this character in the pool
-  if (characterPool[rawCharacter.id]) {
-    const augmentedCharacter = characterPool[rawCharacter.id];
-    Object.assign(augmentedCharacter, rawCharacter);
-    return augmentedCharacter
+  // If the character is already augmented, return it
+  if (augmentedCharacters[character.id]) {
+    return Object.assign(augmentedCharacters[character.id], character);
   }
 
-  // create a new augmented character and add it to the pool
-  const augmentedCharacter = Object.assign({}, rawCharacter);
-  Object.setPrototypeOf(augmentedCharacter, Methods);
-  Object.defineProperties(augmentedCharacter, Object.getOwnPropertyDescriptors(Properties)) 
-  Object.defineProperty(augmentedCharacter, "current_time", {
-    get() {
-        return currentTime
-      },
-      enumerable: true
+  const augmentedCharacter = $state(Object.assign($state.snapshot(character), Formulas, {
+    current_time() {
+      return Time.current;
     }
-  );
-  characterPool[augmentedCharacter.id] = augmentedCharacter;
-  return augmentedCharacter;
+  }));
+
+  return augmentedCharacters[character.id] = augmentedCharacter;
+
+}
+
+export function get(id) {
+  return augmentedCharacters[id] || null;
 }

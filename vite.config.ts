@@ -51,7 +51,7 @@ export default defineConfig(({mode}) => ({
       eslevel: 2021,
       autoexports: true,
       filters: ['return', 'functions', 'esm'],
-      include: 'class',
+      // include: 'class',
       underscored_private: false,
     })
   ],

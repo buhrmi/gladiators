@@ -9,6 +9,9 @@ class CreateFights < ActiveRecord::Migration[8.0]
       t.json :metadata, default: {}
 
       t.timestamps
+
+      t.index :attacker_id
+      t.index :target_id
     end
   end
 end

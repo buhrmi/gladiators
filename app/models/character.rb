@@ -1,6 +1,5 @@
 class Character < ApplicationRecord
-  include Properties
-  include Methods
+  include Formulas
 
   JSON_OPTIONS = {
     only: [
@@ -42,7 +41,11 @@ class Character < ApplicationRecord
   end
 
   def broadcast_update
-    CharacterChannel[self].state("character").assign(saved_changes.transform_values(&:last))
+    # any updates (possible private) to character channel
+    possibly_private_updates = saved_changes.transform_values(&:last)
+    CharacterChannel[self].state("updates").push(possibly_private_updates.merge(id: self.id))
+
+    # public updates to arena channel
     updates = {
       exp: self.exp,
       last_hp: self.last_hp,
@@ -56,6 +59,13 @@ class Character < ApplicationRecord
   def exp=(new_exp)
     self[:exp] = new_exp
     self.level = calculate_level
+  end
+
+  def calculate_level
+    for level in 2..MAX_LEVEL
+      return level-1 if self.exp < EXP_TABLE[level]
+    end
+    MAX_LEVEL
   end
 
   def hp=(value)
