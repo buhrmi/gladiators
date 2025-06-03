@@ -11,6 +11,7 @@ class CreateCharacters < ActiveRecord::Migration[8.0]
       t.integer :last_hp_updated_at, default: -> { 'CURRENT_TIMESTAMP' }
       t.integer :discord_user_id
 
+      t.string :email
       t.string :battle_cry
       t.string :victory_cry
 

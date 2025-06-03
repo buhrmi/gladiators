@@ -10,15 +10,24 @@ class CharactersController < ApplicationController
 
   def new
     launch_in_modal
+    @discord = session[:discord]
   end
 
   def create
-    @character = Character.create!(create_params)
-    session[:character_id] = @character.id
+    character = Character.new(create_params)
+    character.discord_user_id = session[:discord]["uid"]
+    character.name = session[:discord]["info"]["name"]
+    character.email = session[:discord]["info"]["email"]
+    if session[:discord]["info"]["image"]
+      image = URI.parse(session[:discord]["info"]["image"]).open
+      character.portrait.attach(io: image, filename: "portrait.png", content_type: "image/png")
+    end
+    character.save!
+    session[:character_id] = character.id
   end
 
   private
   def create_params
-    params.require(:character).permit(:name, :race)
+    params.require(:character).permit(:race)
   end
 end

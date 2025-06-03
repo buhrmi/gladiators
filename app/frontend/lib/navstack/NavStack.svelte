@@ -311,7 +311,7 @@ nav {
     opacity: var(--transition);
     width: 420px;
     height: calc(100% - 50px);
-    max-height: 700px;
+    max-height: 650px;
     bottom: auto !important;
     border-radius: 30px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);

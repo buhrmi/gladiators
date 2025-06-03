@@ -168,11 +168,6 @@ button {
   width: 100%;
 }
 
-.btn:disabled {
-  background: var(--color-border);
-  color: white;
-  cursor: not-allowed;
-}
 
 .btn.attack { 
   background-color: #e0505c;
@@ -197,6 +192,12 @@ button {
 }
 .btn:hover {
   text-decoration: none;
+}
+
+.btn:disabled {
+  background: var(--color-border);
+  color: white;
+  cursor: not-allowed;
 }
 
 .master_detail {

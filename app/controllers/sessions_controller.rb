@@ -7,13 +7,27 @@ class SessionsController < ApplicationController
   end
 
   def create
-    request.env["omniauth.auth"]
-    sdfsdf
+    auth = request.env["omniauth.auth"]
+    session[:discord] = {
+      uid: auth.uid,
+      info: {
+        name: auth.info.name,
+        email: auth.info.email,
+        image: auth.info.image
+      }
+    }
+    char = Character.find_by(discord_user_id: auth.uid)
+    if char
+      session[:character_id] = char.id
+    end
+    render layout: false
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:character_id] = nil
+    session[:discord] = nil
     flash[:just_logged_out] = true
-    flash.now[:notice] = "You have been logged out."
+    flash[:notice] = "You have been logged out."
+    redirect_back
   end
 end

@@ -1,7 +1,11 @@
 class ActiveStorage::Attached::One
   JSON_OPTIONS = {
     only: [],
-    methods: [ :filename, :signed_id, :path ]
+    methods: [
+      # :filename,
+      # :signed_id,
+      :path
+    ]
   }
 
   def serializable_hash(options = nil)

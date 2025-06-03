@@ -9,11 +9,12 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  resource :session
   resources :guilds
   resource :guild
   resources :fights
 
+  resource :session
+  get "/auth/:provider/callback", to: "sessions#create"
 
   resources :characters
 

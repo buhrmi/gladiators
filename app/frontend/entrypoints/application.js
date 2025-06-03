@@ -1,4 +1,5 @@
 import { createInertiaApp } from 'inertiax-svelte'
+import { Router } from 'inertiax-core';
 import { hydrate, mount } from "svelte";
 import resolve from "./util/resolve";
 import Toast from "~/components/Toasts.svelte";
@@ -12,7 +13,6 @@ createInertiaApp({
     hydrate(App, { target: el, props });
   },
 });
-
 
 // Delegate scrolling to the last pane
 window.addEventListener('wheel', function(e) {
@@ -32,3 +32,10 @@ document.addEventListener("inertia:success", (event) => {
 mount(Toast, {
   target: document.body
 })
+
+
+window.addEventListener("message", (event) => {
+  if (event.data === "logged_in") {
+    Router.for("_top").reload();
+  }
+});

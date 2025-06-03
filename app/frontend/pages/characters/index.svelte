@@ -28,6 +28,11 @@
       {#each characters as c}
         {@const character = augment(c)}
         <div class="character_card">
+          <img
+            class="portrait"
+            src={character.portrait?.path}
+            alt=""
+          >
           <a href="/characters/{character.id}" class="character">
             <div class="name">{character.name}</div>
             <div class="text-sm">Level {character.level} {character.race}</div>
@@ -58,12 +63,14 @@
   }
   .attack {
     flex: 0;
+    height: 100%;
   }
   .character_card {
     display: flex;
+    align-items: center;
     border: 1px solid var(--color-border);
-    border-radius: 1em;
-    padding: 1em;
+    border-radius: 4em;
+    padding: 0.5em;
   }
   .character_card .character {
     flex: 1;
@@ -72,5 +79,14 @@
   .disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+  .portrait {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1em;
+    background: var(--color-border);
+    border: 1px solid white;
   }
 </style>

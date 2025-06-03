@@ -1,8 +1,8 @@
 <script module>
   export function login() {
     let url = "/session/new?provider=discord"
-    let height = 820
-    let width = 520
+    let height = 850
+    let width = 600
     var left = ( screen.width - width ) / 2
     var top = ( screen.height - height ) / 2
     window.open( url, "Log in to Gladiators Reloaded", 'resizable=1,scrollbars=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left)
@@ -19,7 +19,7 @@
   import character from '~/lib/character.svelte';
   import { derived } from 'svelte/store';
 
-  import { subscribe } from 'activestate'
+  import { subscribe, State } from 'activestate'
   import { NavStack, navstack, pushWithoutHistory } from "navstack";
   
   let {
@@ -36,8 +36,8 @@
     if (subscribedId == character_sgid) return;
     if (unsubscribe) {
       unsubscribe();
-      unsubscribe = null;
-      character.set(null);
+      unsubscribe = subscribedId = null;
+      State.character = null;
     }
     if (character_sgid) {
       subscribedId = character_sgid;
@@ -102,15 +102,16 @@
         {/if}
         {coppers} <img src="/icons/copper.png" class="h-4" alt="Kupfer" />
       </div>
+      <a href="/session" data-method="delete">Log out</a>
     </div>
   {:else if character_sgid}
     <div class="spinner"></div>
   {:else}
     <div class="character text-center flex items-center gap-2 md:flex-col">
       <button class="btn primary" use:navstack={{
-          group: "user",
-          initialComponent: import("~/pages/characters/new.svelte"),
-          initialPage: {url: "/characters/new"}
+        src: "/characters/new",
+        group: "user",
+        initialComponent: import("~/pages/characters/new.svelte"),
       }}>
         Char erstellen
       </button>
@@ -119,7 +120,6 @@
         <button onclick={login}>
           einloggen
         </button>
-
       </div>
     </div>
   {/if}

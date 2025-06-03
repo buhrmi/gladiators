@@ -3,7 +3,12 @@ class Character < ApplicationRecord
   include Methods
 
   JSON_OPTIONS = {
-    only: [ :id, :name, :level, :race, :last_hp, :last_hp_updated_at, :exp ]
+    only: [
+      :id, :name, :level, :race, :last_hp, :last_hp_updated_at, :exp
+    ],
+    include: {
+      portrait: {}
+    }
   }
 
   PRIVATE_JSON_OPTIONS = {
@@ -20,7 +25,7 @@ class Character < ApplicationRecord
   has_many :attacking_fights, class_name: "Fight", foreign_key: "attacker_id", dependent: :destroy
   has_many :targeting_fights, class_name: "Fight", foreign_key: "target_id", dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 24 }
+  validates :name, presence: true, length: { maximum: 24 }
   validates :race, presence: true, inclusion: { in: %w[human elf dwarf orc] }
 
   after_update_commit :broadcast_update
