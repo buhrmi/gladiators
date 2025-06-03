@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,8 +52,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
     t.integer "coppers", default: 0
     t.integer "level", default: 1
     t.integer "last_hp", default: 100
-    t.integer "last_hp_updated_at", default: -> { "CURRENT_TIMESTAMP" }
-    t.integer "discord_user_id"
+    t.integer "last_hp_updated_at", default: 0
+    t.string "discord_user_id"
     t.string "email"
     t.string "battle_cry"
     t.string "victory_cry"
@@ -67,6 +70,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_181328) do
     t.json "metadata", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["attacker_id"], name: "index_fights_on_attacker_id"
+    t.index ["target_id"], name: "index_fights_on_target_id"
   end
 
   create_table "guilds", force: :cascade do |t|

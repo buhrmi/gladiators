@@ -16,7 +16,6 @@
 
   import './default.css';
 
-  import { get } from '~/lib/character.svelte';
   import { derived } from 'svelte/store';
 
   import { subscribe, State } from 'activestate'
@@ -36,6 +35,7 @@
     if (unsubscribe) {
       unsubscribe();
       unsubscribe = subscribedId = null;
+      State.character_id = null;
     }
     if (character_sgid) {
       subscribedId = character_sgid;
@@ -50,7 +50,7 @@
     })
   }
 
-  const character = $derived(get(State.character_id))
+  const character = $derived(State.character);
   
   // split character.coppers into gold, silver, and coppers, each 100 units
   const coppers = $derived((character?.coppers || 0) % 100);

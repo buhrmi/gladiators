@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
     char = Character.find_by(discord_user_id: auth.uid)
     if char
       session[:character_id] = char.id
+    else
+      flash[:notice] = "Diesem Discord-Account ist kein Charakter zugeordnet."
     end
     render layout: false
   end
@@ -27,7 +29,7 @@ class SessionsController < ApplicationController
     session[:character_id] = nil
     session[:discord] = nil
     flash[:just_logged_out] = true
-    flash[:notice] = "You have been logged out."
+    flash[:notice] = "Ihr habt Euch erfolgreich ausgeloggt. Bis bald!"
     redirect_back
   end
 end

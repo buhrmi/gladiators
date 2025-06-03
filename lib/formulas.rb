@@ -52,7 +52,7 @@ module Formulas
   end
 
   def ressurection_in()
-    if self.last_hp() <= 0
+    if self.last_hp <= 0
       [ start_regenerating_at() - current_time(), 0 ].max()
     else
       0

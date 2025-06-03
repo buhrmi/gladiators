@@ -1,18 +1,22 @@
 <script>
-  import Input from "~/components/Input.svelte";
   import { useForm } from "inertiax-svelte";
   import { login } from "~/layouts/default.svelte";
   import { onMount, getContext } from "svelte";
+  import { State } from "activestate";
 
   const { router } = getContext("inertia");
 
   const { 
-    discord
+    discord,
+    close
   } = $props();
 
   const character = useForm({
     race: "",
   });
+
+  // close out of this page if we already have a character
+  $effect(() => State.character && close());
 
   onMount(() => {
     const handler = (event) => {

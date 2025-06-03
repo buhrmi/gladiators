@@ -1,15 +1,29 @@
+<script module>
+  import { State } from 'activestate'
+
+  State.toasts ||= [];
+
+  export function showFlash(flash) {
+    ['notice', 'error', 'success', 'info'].forEach(type => {
+      if (flash[type]) {
+        State.toasts.push({
+          type,
+          message: flash[type],
+        });
+      }
+    });
+  }
+</script>
 <script>
     import { fly, scale } from 'svelte/transition'
-    import { State } from 'activestate'
     import { flip } from 'svelte/animate'
     
-    State.toasts ||= [];
     
     const toasts = $derived(State.toasts)
 </script>
 
   <div class="toasts">
-    {#each toasts as toast (toast.id)}
+    {#each toasts as toast (toast.message)}
       <div class="toast {toast.type}" in:fly={{y:-40, duration: 400, opacity: 1}} out:scale animate:flip={{duration:300}}>
         {#if toast.title}
           <div class="title">

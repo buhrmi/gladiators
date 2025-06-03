@@ -14,6 +14,7 @@ class CharactersController < ApplicationController
   end
 
   def create
+    return if session[:character_id]
     character = Character.new(create_params)
     character.discord_user_id = session[:discord]["uid"]
     character.name = session[:discord]["info"]["name"]

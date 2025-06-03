@@ -12,6 +12,12 @@ Object.assign(globalThis, Constants)
 const augmentedCharacters = {};
 State.updates = [];
 
+$effect.root(() => {
+  $effect(() => {
+    State.character = get(State.character_id)
+  });
+})
+
 // Whenever we receive updates from the server, we apply them to the character pool.
 $effect.root(() => {
   $effect(() => {
