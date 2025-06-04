@@ -61,7 +61,7 @@
 </script>
 
 {#if !announcementClosed}
-<div class="announcement relative" out:slide>
+<div class="announcement relative text-balance" out:slide>
   <button class="close absolute top-2 right-2" onclick={() => State.announcementClosed = true}>
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
