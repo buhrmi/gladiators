@@ -65,7 +65,8 @@
   <button class="close absolute top-2 right-2" onclick={() => State.announcementClosed = true}>
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
-  Nach 20 Jahren mal wieder ein neues Gladi.<br>Hier geht's zum <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>. Kommt rein, bin einsam. Ne echt, is keine Sau da.
+  Nach 20 Jahren mal wieder ein neues Gladi.<br>
+  Kommt ins <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>, bin einsam. Ne echt, is keine Sau da.
 </div>
 {/if}
 
