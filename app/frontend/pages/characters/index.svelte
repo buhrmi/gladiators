@@ -25,9 +25,9 @@
 
 <main>
   <section class="py-2">
-    <h2 class="mb-2">Ihr betretet die Arena</h2>
+    <h2 class="mb-2">Langsam betretet Ihr die Arena</h2>
     <p>
-      Ihr könnt Euch nicht erinnern, wie Ihr hier gelandet seid, doch im Getümmel der Arena könnt Ihr einige merkwürdige Gestalten ausmachen:
+      Ihr könnt Euch nicht erinnern, wo Ihr hergekommen seid, doch im Getümmel der Arena könnt Ihr einige merkwürdige Gestalten ausmachen:
     </p>
     <div class="arena">
       {#each augmentedCharacters as character}
