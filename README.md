@@ -1,6 +1,6 @@
 # Gladiators Reloaded
 
-An open-source remake (or rather, continuation, or "spiritual successor") of the OG Gladiators 2 from 2004.
+An open-source reimagination of the classic Gladiators 2 from 2004. The latest code is automatically deployed to [Railway](https://gladi.up.railway.app/)
 
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
 
