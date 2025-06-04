@@ -1,14 +1,14 @@
-if Rails.env.development?
-  orki = Character.create!(
+  # if Rails.env.development?
+  orki = Character.where(
     name: "Orki",
     race: "orc"
-  )
-  elfie = Character.create!(
+  ).first_or_create!
+  elfie = Character.where(
     name: "Elfie",
     race: "elf"
-  )
-  dwarfy = Character.create!(
+  ).first_or_create!
+  dwarfy = Character.where(
     name: "Dwarfy",
     race: "dwarf"
-  )
-end
+  ).first_or_create!
+# end
