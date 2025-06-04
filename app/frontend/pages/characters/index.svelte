@@ -29,7 +29,7 @@
     <p>
       Ihr könnt Euch nicht erinnern, wie Ihr hier gelandet seid, doch im Getümmel der Arena könnt Ihr einige merkwürdige Gestalten ausmachen:
     </p>
-    <div class="arena full-width">
+    <div class="arena">
       {#each augmentedCharacters as character}
         <div class="character_card">
           <img
@@ -66,7 +66,7 @@
   .arena {
     display: flex;
     flex-direction: column;
-    /* gap: 0.5em; */
+    gap: 0.5em;
   }
   .attack {
     flex: 0;
@@ -76,8 +76,8 @@
   .character_card {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--color-border);
-    /* border-radius: 4em; */
+    border: 1px solid var(--color-border);
+    border-radius: 4em;
     padding: 0.5em;
   }
   .character_card .character {

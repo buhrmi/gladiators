@@ -8,8 +8,7 @@ class FightsController < ApplicationController
   end
 
   def create
-    current_character.lock!
-    sleep 10
+    sleep 2 # hihi
     fight = Fight.new(
       attacker: current_character,
       target: Character.find_by(id: params[:target_id])
