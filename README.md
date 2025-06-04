@@ -1,6 +1,6 @@
 # Gladiators Reloaded
 
-An open-source reimagination of the classic Gladiators 2 from 2004. In the pre-alpha phase, the latest code is automatically deployed to [Railway](https://gladi.up.railway.app/), and the database is reset from time to time.
+An open-source reimagination of the [classic Gladiators 2](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/) from 2004. In the pre-alpha phase, the latest code is automatically deployed to [Railway](https://gladi.up.railway.app/), and the database is reset from time to time.
 
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
 
