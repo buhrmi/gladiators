@@ -32,7 +32,7 @@
 <header>Neuer Ankömmling</header>
 <main>
   <section>
-    <h2 class="mb-4">Willkommen im Lande Gondals</h2>
+    <h2 class="mb-4">Willkommen im Lande Gondal</h2>
     <p>In dieser Welt werdet Ihr bekannt sein als:</p>
 
     {#if discord}

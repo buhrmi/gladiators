@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   def index
-    @characters = Character.all.with_attached_portrait.as_json(Character::JSON_OPTIONS)
+    @characters = Character.order("exp desc").with_attached_portrait.as_json(Character::JSON_OPTIONS)
   end
 
   def show
