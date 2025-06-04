@@ -2,6 +2,9 @@ require_relative "boot"
 
 require "rails/all"
 
+# TODO: Move this into formulas.rb once the ruby2js bug is fixed
+require "./lib/constants"
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -20,7 +23,7 @@ module Gladiators
     config.i18n.default_locale = :de
 
     config.active_support.isolation_level = :fiber
-    config.autoload_paths << "#{config.root}/lib"
+    # config.autoload_paths << "#{config.root}/lib"
 
     config.global_id.expires_in = nil
     # Configuration for the application, engines, and railties goes here.

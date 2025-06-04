@@ -1,4 +1,3 @@
-
 MAX_LEVEL = 99
 
 EXP_TABLE = [].tap do |table|
