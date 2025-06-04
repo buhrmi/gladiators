@@ -37,7 +37,10 @@
             src={character.portrait?.path}
             alt=""
           >
-          <a href="/characters/{character.id}" class="character">
+          <a href="/characters/{character.id}" class="character" use:navstack={{
+            initialComponent: import("~/pages/characters/show.svelte"),
+            character
+            }}>
             <div class="name">{character.name}</div>
             <div class="text-sm">Level {character.level} {character.race}</div>
             <div class="text-sm">HP: {Math.ceil(character.hp())} / {character.max_hp()}</div>
