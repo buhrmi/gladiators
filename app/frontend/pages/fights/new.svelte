@@ -19,7 +19,7 @@
   <section class="py-2">
     <h2 class="mb-2">Wollt Ihr {target.name} angreifen?</h2>
     <p>
-      Es geht heiß her. Plötzlich seht Ihr {target.name} vor Euch stehen, ein {target.race} der {target.level}. Stufe. Er hält ein Schwert in seiner Hand und grinst Euch an.
+      Plötzlich seht Ihr <strong>{target.name}</strong> vor Euch stehen, ein <strong>{target.race} der {target.level}. Stufe</strong>. Sein <strong>Schwert</strong> ist einsatzbereit.
     </p>
     <button onclick={attack} class="btn attack mb-2" data-loader>
       <div class="i-game-icons:sword-brandish w-1.7em h-1.7em"></div>
