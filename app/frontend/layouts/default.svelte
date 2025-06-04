@@ -61,12 +61,12 @@
 </script>
 
 {#if !announcementClosed}
-<div class="announcement relative text-balance" out:slide>
+<div class="announcement relative text-balance px-8" out:slide>
   <button class="close absolute top-2 right-2" onclick={() => State.announcementClosed = true}>
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
-  Nach 20 Jahren mal wieder ein neues Gladi entwickeln.<br>
-  Kommt ins <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>, mir ist langweilig.
+  Nach 20 Jahren ist es wieder mal Zeit, ein neues Gladi zu entwickeln.
+  Komm <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>, mir ist langweilig.
 </div>
 {/if}
 
