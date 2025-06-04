@@ -5,7 +5,7 @@ setInterval(() => {
 
 
 const Time = {
-  get current() {
+  current_time() {
     return currentTime;
   }
 };

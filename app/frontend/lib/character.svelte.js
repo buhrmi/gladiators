@@ -5,9 +5,6 @@ import Time from "~/lib/time.svelte.js";
 // Isomorphic logic shared between ruby and js
 import {Formulas} from "$/formulas.rb"
 
-// formulas.rb relies on constants.rb being available globally.
-import * as Constants from "$/constants.rb";
-Object.assign(globalThis, Constants)
 
 const augmentedCharacters = {};
 State.updates = [];
@@ -34,12 +31,10 @@ export function augment(character) {
     return Object.assign(augmentedCharacters[character.id], character);
   }
 
-  const augmentedCharacter = $state(Object.assign($state.snapshot(character), Formulas, {
-    current_time() {
-      return Time.current;
-    }
-  }));
-
+  const augmentedCharacter = $state(
+    Object.assign($state.snapshot(character), Formulas, Time)
+  )
+ 
   return augmentedCharacters[character.id] = augmentedCharacter;
 
 }

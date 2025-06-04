@@ -3,7 +3,7 @@ require_relative "boot"
 require "rails/all"
 
 # TODO: Move this into formulas.rb once the ruby2js bug is fixed
-require "./lib/constants"
+# require "./app/lib/constants"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
