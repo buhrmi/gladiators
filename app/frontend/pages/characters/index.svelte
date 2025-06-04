@@ -44,7 +44,11 @@
  
           </a>
           <a href="/fights/new?target_id={character.id}" class="btn attack" class:disabled={!canAttack(character)}
-          use:navstack={{group: "arena"}}
+          use:navstack={{
+            initialComponent: import("~/pages/fights/new.svelte"),
+            group: "arena",
+            target: character
+          }}
           >
             {#if Time.current < lastAttacks[character.id] + 60}
               <div class="i-fluent:hourglass-24-regular w-1.7em h-1.7em"></div>
