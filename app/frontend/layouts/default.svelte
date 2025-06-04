@@ -66,7 +66,7 @@
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
   Nach 20 Jahren ist es wieder mal Zeit, ein neues Gladi zu entwickeln.
-  Komm <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>, mir ist langweilig.
+  Komm ins <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a>, wenn du über die alten oder neuen Spiele labern willst.
 </div>
 {/if}
 
