@@ -16,7 +16,7 @@
 
   function canAttack(c) {
     let res = true
-    if (Time.current < lastAttacks[c.id] + 60) res = false
+    if (Time.current_time() < lastAttacks[c.id] + 60) res = false
     if (c.id == State.character?.id) res = false
     if (c.hp <= 0) res = false
     return res
@@ -50,9 +50,9 @@
             target: character
           }}
           >
-            {#if Time.current < lastAttacks[character.id] + 60}
+            {#if Time.current_time() < lastAttacks[character.id] + 60}
               <div class="i-fluent:hourglass-24-regular w-1.7em h-1.7em"></div>
-              Wartezeit&nbsp;{Math.round((lastAttacks[character.id] + 60 - Time.current))}s
+              Wartezeit&nbsp;{Math.round((lastAttacks[character.id] + 60 - Time.current_time()))}s
             {:else}
               <div class="i-game-icons:sword-brandish w-1.7em h-1.7em"></div>
               <div>
