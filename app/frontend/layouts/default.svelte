@@ -158,8 +158,14 @@
 </nav>
 
 <main id="main">
-  <NavStack {panes} {children} />
+  <NavStack {panes} {children} {loading} />
 </main>
+
+{#snippet loading()}
+  <div class="w-full h-full items-center flex absolute">
+    <div class="spinner"></div>
+  </div>
+{/snippet}
 
 <style>
   /* Common styles for bar containers */

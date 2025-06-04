@@ -115,6 +115,7 @@
     children,
     snippet,
     component,
+    loading,
     panes = [],
     ...rest
   } = $props();
@@ -187,7 +188,9 @@
     <pane.component {...pane} {back} {close}/>
   {:else} 
     {""} <!-- without this empty string, we get hydration mismatch. no clue why. -->
-    <Frame {...pane} {onclick} {back} {close} />
+    <Frame {...pane} {onclick} {back} {close}>
+       {@render loading?.()}
+    </Frame>
   {/if}
   </div>
 {/snippet}

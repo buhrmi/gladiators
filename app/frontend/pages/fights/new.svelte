@@ -10,7 +10,7 @@
     router.post("/fights", {
       target_id: target.id
     }, {
-      preserveUrl: false
+      // preserveUrl: false
     })
   }
 </script>
