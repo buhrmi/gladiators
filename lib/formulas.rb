@@ -40,7 +40,7 @@ module Formulas
   end
 
   def resurrection_wait_time()
-    20
+    30
   end
 
   def regen_wait_time()
