@@ -9,9 +9,11 @@ import {Formulas} from "$/formulas.rb"
 const augmentedCharacters = {};
 State.updates = [];
 
+// export const character = toStore($derived(augmentedCharacters[State.character_id]))
+
 $effect.root(() => {
   $effect(() => {
-    State.character = get(State.character_id)
+    State.character = augmentedCharacters[State.character_id]
   });
 })
 
@@ -37,8 +39,4 @@ export function augment(character) {
  
   return augmentedCharacters[character.id] = augmentedCharacter;
 
-}
-
-export function get(id) {
-  return augmentedCharacters[id] || null;
 }

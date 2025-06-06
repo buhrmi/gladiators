@@ -5,6 +5,9 @@ class Character < ApplicationRecord
     only: [
       :id, :name, :level, :race, :last_hp, :last_hp_updated_at, :exp
     ],
+    methods: [
+      :stats
+    ],
     include: {
       portrait: {}
     }
@@ -12,7 +15,6 @@ class Character < ApplicationRecord
 
   PRIVATE_JSON_OPTIONS = {
     only: JSON_OPTIONS[:only] + [ :coppers ]
-    # methods: [ :exp_on_this_level, :exp_to_next_level ]
   }
 
   has_one_attached :portrait
@@ -21,6 +23,7 @@ class Character < ApplicationRecord
 
   has_many :character_items, dependent: :destroy
   has_many :items, through: :character_items, dependent: :destroy
+  has_many :equipped_items, -> { where("equipped_slot IS NOT NULL") }, class_name: "CharacterItem", dependent: :destroy
   has_many :attacking_fights, class_name: "Fight", foreign_key: "attacker_id", dependent: :destroy
   has_many :targeting_fights, class_name: "Fight", foreign_key: "target_id", dependent: :destroy
 
@@ -71,5 +74,12 @@ class Character < ApplicationRecord
   def hp=(value)
     self.last_hp = value
     self.last_hp_updated_at = Time.current
+  end
+
+  def stats
+    {
+      min_damage: 2,
+      max_damage: 3
+    }
   end
 end

@@ -11,6 +11,14 @@ module Formulas
     10
   end
 
+  def min_damage()
+    stats[:min_damage]
+  end
+
+  def max_damage()
+    stats[:max_damage]
+  end
+
   def hp_per_level()
     2
   end

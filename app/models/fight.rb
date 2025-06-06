@@ -88,7 +88,9 @@ class Fight < ApplicationRecord
     attacker = participants[attacker_idx]
     target = participants[target_idx]
     log({ event: "attack", attacker_idx:, target_idx: })
-    damage = rand(3..6)
+    min_damage = attacker.min_damage
+    max_damage = attacker.max_damage
+    damage = rand(min_damage..max_damage)
     target.hp -= damage
     log({ event: "damage", damage: damage, dmg_type: "slash", target_idx: })
   end
