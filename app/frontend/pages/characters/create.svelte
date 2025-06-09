@@ -9,7 +9,7 @@
   const { router } = getContext('inertia');
   
   if (return_to) {
-    router.visit(return_to);
+    router.visit(return_to, {replace: true});
   } else {
     close()
   }
