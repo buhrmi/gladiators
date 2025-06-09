@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  serialize :stats, HashWithIndifferentAccess
+  # serialize :stats, HashWithIndifferentAccess
 end
