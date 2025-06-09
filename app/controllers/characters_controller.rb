@@ -10,6 +10,7 @@ class CharactersController < ApplicationController
 
   def new
     launch_in_modal
+    @return_to = session[:return_to]
     @discord = session[:discord]
   end
 
@@ -24,6 +25,8 @@ class CharactersController < ApplicationController
       character.portrait.attach(io: image, filename: "portrait.png", content_type: "image/png")
     end
     character.save!
+
+    @return_to = session[:return_to]
     session[:character_id] = character.id
   end
 

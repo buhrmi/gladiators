@@ -5,7 +5,8 @@ class FightsController < ApplicationController
   end
 
   def create
-    unless session[:character_id]
+    unless current_character
+      session[:return_to] = new_fight_path(target_id: params[:target_id])
       return redirect_to new_character_path
     end
     sleep 1 # hihi
