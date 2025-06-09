@@ -1,13 +1,13 @@
 class FightsController < ApplicationController
   def new
-    unless session[:character_id]
-      return redirect_to new_character_path
-    end
     @panes = [ { src: "/" } ]
     @target = Character.find_by(id: params[:target_id])
   end
 
   def create
+    unless session[:character_id]
+      return redirect_to new_character_path
+    end
     sleep 1 # hihi
     fight = Fight.new(
       attacker: current_character,
