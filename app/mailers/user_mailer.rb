@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   def verification_email(user, token)
     @user = user
     @verification_url = email_verification_url(token)
-    mail to: @user.email, subject: "Welcome to Gladi! Please verify your email address"
+    mail to: @user.email, subject: "Welcome to the arena! Please verify your email address"
   end
 
   def password_reset

@@ -1,8 +1,8 @@
-# Gladiators Reloaded
+# Arenakampf
 
 An open-source reimagination of the [classic Gladiators 2](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/) from 2004. 
 
-[Testing server](https://gladi.up.railway.app/) • [Chat on Discord](https://discord.gg/S4wb8V3GrP)
+[Testing server](https://arena.buhrmi.de/) • [Chat on Discord](https://discord.gg/S4wb8V3GrP)
 
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
 

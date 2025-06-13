@@ -12,7 +12,7 @@ default: &default
 development:
   <<: *default
   adapter: postgresql
-  database: gladi_dev
+  database: arena_dev
   # database: storage/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and

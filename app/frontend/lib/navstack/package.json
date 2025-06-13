@@ -15,7 +15,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buhrmi/gladi",
+    "url": "git+https://github.com/buhrmi/arena",
     "directory": "app/frontend/lib/navstack"
   },
   "peerDependencies": {

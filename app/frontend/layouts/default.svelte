@@ -5,7 +5,7 @@
     let width = 600
     var left = ( screen.width - width ) / 2
     var top = ( screen.height - height ) / 2
-    window.open( url, "Log in to Gladiators Reloaded", 'resizable=1,scrollbars=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left)
+    window.open( url, "Arenakampf", 'resizable=1,scrollbars=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left)
   }
 
   subscribe("ArenaChannel")
