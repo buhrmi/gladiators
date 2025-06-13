@@ -45,7 +45,7 @@ class Fight < ApplicationRecord
       end
     end
 
-    if you die u get nothing
+    # if you die u get nothing
     rewards[0] = {} unless participants[0].alive
     rewards[1] = {} unless participants[1].alive
 
