@@ -70,3 +70,5 @@ gem "sentry-rails"
 gem "omniauth"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-discord"
+
+gem "discordrb", "~> 3.5"

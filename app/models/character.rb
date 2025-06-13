@@ -33,6 +33,8 @@ class Character < ApplicationRecord
   after_update_commit :broadcast_update
   after_update_commit :check_level_up
 
+  before_validation :update_from_discord, if: -> { discord_user_id.present? && !self.name.present? }
+
   def check_level_up
     if saved_change_to_level?
       CharacterChannel[self].state("toasts").push({
@@ -76,10 +78,23 @@ class Character < ApplicationRecord
     self.last_hp_updated_at = Time.current
   end
 
+
   def stats
     {
       min_damage: 2,
       max_damage: 3
     }
+  end
+
+  def update_from_discord
+    token = Rails.application.credentials.dig(:discord, :bot_token)
+    res = Discordrb::API::User.resolve("Bot " + token, self.discord_user_id)
+    user = JSON.parse res.body
+    self.name = user["username"]
+    if user["avatar"]
+      uri = "#{Discordrb::API::CDN_URL}/avatars/#{discord_user_id}/#{user['avatar']}.png"
+      image = URI.parse(uri).open
+      self.portrait.attach(io: image, filename: "portrait.png")
+    end
   end
 end

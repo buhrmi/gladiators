@@ -45,12 +45,11 @@ class Fight < ApplicationRecord
       end
     end
 
-    # if you die u get nothing
+    if you die u get nothing
     rewards[0] = {} unless participants[0].alive
     rewards[1] = {} unless participants[1].alive
 
     self.won = attacker.alive
-
     participants.each_with_index do |participant, idx|
       participant.last_hp = participant.hp
       rewards = self.rewards[idx]
@@ -68,7 +67,7 @@ class Fight < ApplicationRecord
 
   # rewards by participant index
   def rewards
-    metadata[:rewards] ||= []
+    metadata["rewards"] ||= []
   end
 
   def winner

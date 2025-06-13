@@ -51,11 +51,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_06_195459) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_items_on_character_id"
+    t.index ["item_id"], name: "index_character_items_on_item_id"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "race"
+    t.string "race", default: "human"
     t.integer "exp", default: 0
     t.integer "guild_id"
     t.integer "coppers", default: 0

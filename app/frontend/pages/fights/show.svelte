@@ -56,7 +56,7 @@
     {#each participants as participant}
       {#if participant.hp() <= 0}
         <p>
-          {participant.name} stirbt und wird in {Math.ceil(participant.ressurection_in())} Sekunden wiederbelebt.
+          {participant.name} stirbt und wird in {Math.ceil(participant.resurrection_in())} Sekunden wiederbelebt.
         </p>
       {/if}
     {/each}

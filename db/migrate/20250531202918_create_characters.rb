@@ -2,7 +2,7 @@ class CreateCharacters < ActiveRecord::Migration[8.0]
   def change
     create_table :characters do |t|
       t.string :name
-      t.string :race
+      t.string :race, default: "human"
       t.integer :exp, default: 0
       t.integer :guild_id
       t.integer :coppers, default: 0
