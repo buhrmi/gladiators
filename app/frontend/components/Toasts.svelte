@@ -68,7 +68,7 @@
       padding: 0.8em;
       padding-left: 1.2em;
       border-radius: 2em;
-      background: white;
+      background: var(--color-bg);
       box-shadow: 0px 0px 0.8em 0px rgba(0, 0, 0, 0.2);
       &.success {
         background: linear-gradient(#131, #010);

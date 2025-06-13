@@ -2,7 +2,7 @@
 
 :root {
   --padding: 1rem;
-  --color-bg: #ffffff;
+  --color-bg: #f0f0ec;
   --color-bg-hover: rgba(51, 0, 255, 0.1);
   --color-border: rgba(100, 130, 162, 0.297);
   --color-border-focus: #da4298;
@@ -23,6 +23,7 @@ body {
   /* background: linear-gradient(to bottom, rgb(14, 14, 29), rgb(33, 21, 44)); */
   background-attachment: fixed;
   color: black;
+  background: var(--color-bg);
 }
 
 button, a {
@@ -134,7 +135,7 @@ footer {
   grid-area: footer;
   /* grid-row: footer; */
   bottom: 0;
-  background: white;
+  background: var(--color-bg);
   position: sticky;
 }
 

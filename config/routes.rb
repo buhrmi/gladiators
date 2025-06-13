@@ -12,13 +12,12 @@ Rails.application.routes.draw do
   resources :guilds
   resource :guild
   resources :fights
-
-  resource :session
-  get "/auth/:provider/callback", to: "sessions#create"
-
   resources :characters
+  resource :session
 
+  get "/auth/:provider/callback", to: "sessions#create"
   get "install", to: redirect("https://discord.com/oauth2/authorize?client_id=1153706516583563324")
+  inertia "bot" => "static/bot", nav: "bot"
 
   # Defines the root path route ("/")
   root to: "characters#index"

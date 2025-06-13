@@ -17,6 +17,7 @@
     if (!options && !ev.target.closest('[href]')) return;
     if (ev.target.closest('[data-navstack-ignore')) return;
     if (ev.target.closest('[data-method]')) return;
+    if (ev.target.closest('[target]')) return;
     if (ev.defaultPrevented) return;
     const href = ev.target.closest('[href]')?.getAttribute('href');
     if (href && !shouldIntercept(ev)) return;
@@ -218,7 +219,7 @@
   width: 100%;
   transition: all 0.3s ease;
   opacity: 1;
-  background: white;
+  background: var(--color-bg);
   overflow-y: auto;
   overflow-x: hidden;
   display: grid;

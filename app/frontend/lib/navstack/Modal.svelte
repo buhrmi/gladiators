@@ -81,7 +81,7 @@
   transform: translateY(calc((1 - var(--transition)) * 100%));
   height: 98%;
   /* overflow: hidden; */
-  background-color: white;
+  background-color: var(--color-bg);
 }
 @media (min-width: 600px) {
   .modal {

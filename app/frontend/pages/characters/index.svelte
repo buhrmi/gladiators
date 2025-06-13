@@ -67,6 +67,12 @@
       {/each}
       </div>
     </section>
+    <section>
+      <p>
+        Hurra, der
+        <a href="/bot">Discord Bot</a> ist da!
+      </p>
+    </section>
   </main>
   
 <style>
