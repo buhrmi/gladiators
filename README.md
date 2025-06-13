@@ -15,8 +15,11 @@ An open-source reimagination of the [classic Gladiators 2](https://web.archive.o
 
 ### Here are some interesting finds on the wayback machine:
 
-[Gladiators 3 announcement](https://web.archive.org/web/20050215164909/http://gladiators.schaunwama.de/forum/showthread.php?p=1581). This would later become [Gondal](https://web.archive.org/web/20060717024220/http://gondal.webtales.4players.de/) and ultimately sold off to Inqnet GmbH.
 
-[Old landing page with news](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/)
+2004: [Old landing page with story](https://web.archive.org/web/20041202235635/http://www.g2.onlineplayers.de/)
 
-[Old landing page with story](https://web.archive.org/web/20041202235635/http://www.g2.onlineplayers.de/)
+2005: [Old landing page with news](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/)
+
+2006: [Gladiators 3 announcement](https://web.archive.org/web/20050215164909/http://gladiators.schaunwama.de/forum/showthread.php?p=1581). This would later become [Gondal](https://web.archive.org/web/20060717024220/http://gondal.webtales.4players.de/) and ultimately sold off. New owners reused the name and domain for a [new browsergame](https://gondal.de).
+
+2015: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/)
