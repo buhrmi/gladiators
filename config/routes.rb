@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :characters
 
+  get "install", to: redirect("https://discord.com/oauth2/authorize?client_id=1153706516583563324")
 
   # Defines the root path route ("/")
   root to: "characters#index"
