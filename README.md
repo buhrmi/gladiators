@@ -14,7 +14,7 @@ In 2006 I gave the project away for free to the community leader, after announci
 
 The Gladiators 2 community leader went on to rename the project Arenakampf and also gave it a new design: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/). The game managed to stay active until 2018, when it finally shut down.
 
-So this project is an attempt to capture all the good memories attached to the game and its past, and not let it get lost in the void.
+So this project is an attempt to capture all the good memories attached to the game and its past, to channel them all onto a modern codebase, and to maybe even reconnect with old players.
 
 ## Features
 
