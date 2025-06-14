@@ -14,7 +14,7 @@ In 2006 I gave the project away for free to the community leader, after announci
 
 The Gladiators 2 community leader went on to rename the project Arenakampf and also gave it a new design: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/). The game managed to stay active until 2018, when it finally shut down.
 
-Arena Wars is an attempt to capture all the good ideas and memories of the game and its past, make them come alive again with a modern codebase, and to maybe even reconnect with old players. If you are an old player and have been waiting for a "new gladi", please hop in to the [Discord channel](https://discord.gg/S4wb8V3GrP) and say hi.
+Arena Wars is an attempt to capture all the good ideas and memories of the game and its past, make them come alive again with a modern codebase, and to maybe even reconnect with old players. If you are an old player and have been waiting for a "new gladi", feel free to hop in to the [Discord channel](https://discord.gg/S4wb8V3GrP) and say hi.
 
 ## Features
 
