@@ -21,8 +21,8 @@ namespace :discord do
 
 
         url = Rails.application.routes.url_helpers.fight_url(fight)
-        text = "💥 #{attacker.name} kämpft gegen #{target.name}!\n"
-        text += "🪦 #{fight.loser.name} stirbt und wird in #{fight.loser.resurrection_in.ceil}s wiederbelebt.\n"
+        text = "💥 #{attacker.name} greift #{target.name} an!\n"
+        text += "Nach #{fight.round} Runden geht **#{fight.winner.name}** als Sieger hervor. **#{fight.loser.name}** wird niedergestreckt und in #{fight.loser.resurrection_in.ceil}s wiederbelebt.\n"
         emojis = {
           exp: "✨",
           coppers: "💰",
@@ -31,11 +31,11 @@ namespace :discord do
 
         fight.rewards.each_with_index do |rewards, index|
           rewards.each do |type, amount|
-            text += "#{emojis[type]} #{participants[index].name} erhält #{amount} #{type}\n"
+            text += "#{emojis[type]} #{participants[index].name} gewinnt #{amount} #{type}\n"
           end
         end
 
-        text += "Kampfverlauf: #{url}"
+        text += "Kampfverlauf: <#{url}>"
         text
       else
         "Ihr müsst einen Charakter angeben, den ihr angreifen wollt, z.B. `!attack @buhrmi`."
