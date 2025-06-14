@@ -69,8 +69,8 @@
     </section>
     <section>
       <p>
-        Hurra, der
-        <a href="/bot">Discord Bot</a> ist da!
+        Arenakampf ist eine <a href="https://github.com/buhrmi/arenawars">open-source</a> Neuinterpretation
+        des Browsergames <strong>Gladiators 2</strong> von 2004.
       </p>
     </section>
   </main>
