@@ -4,6 +4,12 @@ An open-source reimagination of the [classic Gladiators 2](https://web.archive.o
 
 [Testing server](https://arena.buhrmi.de/) • [Chat on Discord](https://discord.gg/S4wb8V3GrP)
 
+## Features
+
+- Fight other characters in the arena
+- Level up and learn skills
+- [Arena Bot](https://arena.buhrmi.de/bot) for your own server
+
 <img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
 
 ### Tech stack
