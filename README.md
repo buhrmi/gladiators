@@ -4,22 +4,7 @@ An open-source reimagination of the [classic Gladiators 2 browsergame](https://w
 
 [Testing server](https://arena.buhrmi.de/) • [Chat on Discord](https://discord.gg/S4wb8V3GrP)
 
-## Features
-
-- Fight other characters in the arena
-- Level up and learn skills
-- [Arena Bot](https://arena.buhrmi.de/bot) for your own server
-
-<img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
-
-### Tech stack
-- [Ruby on Rails](https://rubyonrails.org)
-- [Svelte](https://svelte.dev)
-- [Inertia X](https://github.com/buhrmi/inertiax)
-- [ActiveState](https://github.com/buhrmi/activestate)
-
-
-### History
+## History
 
 Gladiators 2 started in 2004 as a free-to-play text-based browser game. Even though it was very basic, the simple concept quickly ammassed thousands of players, which was a tiny bit impressive for that time.
 
@@ -30,3 +15,18 @@ In 2006 I gave the project away for free to the community leader, after announci
 The Gladiators 2 community leader went on to rename the project Arenakampf and also gave it a new design: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/). The game managed to stay active until 2018, when it finally shut down.
 
 So this project is an attempt to capture all the good memories attached to the game and its past, and not let it get lost in the void.
+
+## Features
+
+- Fight other characters in the arena and level up
+- An [Arena Bot](https://arena.buhrmi.de/bot) that you can add to your own Discord guild server
+
+<img width="790" alt="image" src="https://github.com/user-attachments/assets/c8d625a3-3ceb-4eb8-b589-5d08afd2e3cb" />
+
+### Tech stack
+- [Ruby on Rails](https://rubyonrails.org)
+- [Svelte](https://svelte.dev)
+- [Inertia X](https://github.com/buhrmi/inertiax)
+- [ActiveState](https://github.com/buhrmi/activestate)
+
+
