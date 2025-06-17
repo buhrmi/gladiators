@@ -25,7 +25,7 @@
 
 <main>
   <section class="py-2">
-    <h2 class="mb-2">Willkommen bei Gladiators</h2>
+    <h2 class="mb-2">Willkommen bei Arena Wars</h2>
     <p>
       Langsam betretet Ihr die Arena. Jubel und Geschrei ertönt von den Rängen. Als Ihr Euch umblickt, sehr Ihr viele merkwüdige Gestalten.
     </p>
@@ -69,7 +69,7 @@
     </section>
     <section>
       <p>
-        Arenakampf ist eine <a href="https://github.com/buhrmi/arenawars">open-source</a> Neuinterpretation
+        Arena Wars ist eine <a href="https://github.com/buhrmi/arenawars">open-source</a> Neuinterpretation
         des Browsergames <strong>Gladiators 2</strong> von 2004.
       </p>
     </section>
