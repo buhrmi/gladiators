@@ -25,9 +25,9 @@
 
 <main>
   <section class="py-2">
-    <h2 class="mb-2">Langsam betretet Ihr die Arena</h2>
+    <h2 class="mb-2">Willkommen bei Gladiators</h2>
     <p>
-      Ihr könnt Euch nicht erinnern, wo Ihr hergekommen seid, doch im Getümmel der Arena könnt Ihr einige merkwürdige Gestalten ausmachen:
+      Langsam betretet Ihr die Arena. Jubel und Geschrei ertönt von den Rängen. Als Ihr Euch umblickt, sehr Ihr viele merkwüdige Gestalten.
     </p>
     <div class="arena">
       {#each augmentedCharacters as character}
