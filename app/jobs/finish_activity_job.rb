@@ -12,7 +12,6 @@ class FinishActivityJob < ApplicationJob
     extra_exp = exp - base_exp
     char = Character.find(character_id)
     char.exp += exp
-    char.activity = nil
     char.save!
     extra_exp_text = extra_exp != 0 ? " (#{extra_exp > 0 ? '+' : ''}#{extra_exp})" : ""
     outcome_text =
