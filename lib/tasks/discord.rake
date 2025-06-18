@@ -8,8 +8,21 @@ namespace :discord do
       message = event.message
       author = message.author
       character = Character.where(discord_user_id: author.id).first_or_create!
-      if args.empty?
-        return "Ihr müsst angeben, wie lange ihr trainieren wollt, z.B. `!train 10` für 10 Minuten."
+
+      character.with_lock do
+        if character.activity
+          if character.activity == "train"
+            return "Ihr seid bereits am Trainieren. Bitte wartet, bis das Training beendet ist."
+          else
+            return "Ihr seid beschäftigt und könnt nicht trainieren."
+          end
+        end
+
+        if args.empty?
+          return "Ihr müsst angeben, wie lange ihr trainieren wollt, z.B. `!train 10` für 10 Minuten."
+        end
+
+        character.update!(activity: "train")
       end
 
       begin
@@ -24,12 +37,14 @@ namespace :discord do
         return "Die Trainingsdauer darf maximal 60 Minuten betragen."
       end
 
-      FinishTrainingJob.set(wait: duration.minutes).perform_later(
-        character_id: character.id,
-        channel_id: event.channel.id,
-        user_id: author.id,
+      FinishActivityJob.set(wait: duration.minutes).perform_later(
+        character.id,
+        event.channel.id,
+        author.id,
+        activity: "train",
         duration: duration
       )
+
       "<@#{author.id}> geht für #{duration} Minuten trainieren."
     end
 
