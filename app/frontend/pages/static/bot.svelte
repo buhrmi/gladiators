@@ -27,7 +27,7 @@
         !attack [@name] - Greift den Charakter @name an
       </li>
       <li>
-        !train [minuten] - Für [minuten] ins Training gehen, und Erfahrung erhalten.
+        !train [minuten] - Für [minuten] trainieren, und Erfahrung erhalten.
       </li>
     </ul>
   </section>
