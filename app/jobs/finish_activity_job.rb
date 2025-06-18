@@ -4,7 +4,7 @@ class FinishActivityJob < ApplicationJob
   def perform(character_id, channel_id = nil, user_id = nil, options)
     bot = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :bot_token)
     # Simulate training outcome: random factor between 0.5 and 1.5
-    outcome_factor = rand(0.5..1.5)
+    outcome_factor = rand(0.6..1.5)
     duration = options[:duration] || 1
     base_exp = 10 * duration + 5
     exp = (base_exp * outcome_factor).round
@@ -17,9 +17,9 @@ class FinishActivityJob < ApplicationJob
     outcome_text =
       if outcome_factor > 1.3
         "Es war ein legendäres Training!#{extra_exp_text} 💪"
-      elsif outcome_factor > 1.0
+      elsif outcome_factor > 1.15
         "Das Training lief richtig gut!#{extra_exp_text} 🚀"
-      elsif outcome_factor > 0.7
+      elsif outcome_factor > 1
         "Ein solides Training liegt hinter dir.#{extra_exp_text}"
       else
         "Das Training war heute etwas zäh...#{extra_exp_text} 😅"
