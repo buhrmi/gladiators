@@ -72,3 +72,5 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-discord"
 
 gem "discordrb", "~> 3.5"
+
+gem "solid_queue", "~> 1.1"
