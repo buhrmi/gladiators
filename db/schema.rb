@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_18_223913) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_18_230112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -70,7 +70,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_18_223913) do
     t.string "victory_cry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "activity"
+    t.string "active_job_id"
+    t.index ["active_job_id"], name: "index_characters_on_active_job_id"
   end
 
   create_table "fights", force: :cascade do |t|

@@ -27,6 +27,8 @@ class Character < ApplicationRecord
   has_many :attacking_fights, class_name: "Fight", foreign_key: "attacker_id", dependent: :destroy
   has_many :targeting_fights, class_name: "Fight", foreign_key: "target_id", dependent: :destroy
 
+  has_one :active_job, -> { where(finished_at: nil) }, class_name: "SolidQueue::Job", primary_key: "active_job_id", foreign_key: "active_job_id"
+
   validates :name, presence: true, length: { maximum: 24 }
   validates :race, presence: true, inclusion: { in: %w[human elf dwarf orc] }
 

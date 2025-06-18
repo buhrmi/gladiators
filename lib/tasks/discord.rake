@@ -10,12 +10,11 @@ namespace :discord do
       character = Character.where(discord_user_id: author.id).first_or_create!
       duration = 0
       character.with_lock do
-        if character.activity
-          if character.activity == "train"
-            return "Ihr seid bereits am Trainieren. Bitte wartet, bis das Training beendet ist."
-          else
-            return "Ihr seid beschäftigt und könnt nicht trainieren."
-          end
+        if job = character.active_job
+          finish_time = job.scheduled_at
+          remaining_time = finish_time - Time.now
+          in_words = ActiveSupport::Duration.build(remaining_time.ceil).inspect
+          return "<@#{author.id}> ist noch #{in_words} beschäftigt."
         end
 
         if args.empty?
@@ -34,18 +33,16 @@ namespace :discord do
           return "Die Trainingsdauer darf maximal 60 Minuten betragen."
         end
 
-        character.update!(activity: "train")
+        job = FinishActivityJob.set(wait: duration.minutes).perform_later(
+          character.id,
+          event.channel.id,
+          author.id,
+          activity: "train",
+          duration: duration
+        )
+
+        character.update active_job_id: job.job_id
       end
-
-
-      FinishActivityJob.set(wait: duration.minutes).perform_later(
-        character.id,
-        event.channel.id,
-        author.id,
-        activity: "train",
-        duration: duration
-      )
-
       "<@#{author.id}> geht für #{duration} Minuten trainieren."
     end
 

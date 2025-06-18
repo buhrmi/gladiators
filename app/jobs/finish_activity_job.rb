@@ -17,13 +17,13 @@ class FinishActivityJob < ApplicationJob
     extra_exp_text = extra_exp != 0 ? " (#{extra_exp > 0 ? '+' : ''}#{extra_exp})" : ""
     outcome_text =
       if outcome_factor > 1.3
-        "Es war ein legendäres Training!#{extra_exp_text} 💪"
+        "Es war legendär!#{extra_exp_text} 💪"
       elsif outcome_factor > 1.15
-        "Das Training lief richtig gut!#{extra_exp_text} 🚀"
+        "Es lief richtig gut!#{extra_exp_text} 🚀"
       elsif outcome_factor > 1
-        "Ein solides Training liegt hinter dir.#{extra_exp_text}"
+        "Es war solide!#{extra_exp_text} 👍"
       else
-        "Das Training war heute etwas zäh...#{extra_exp_text} 😅"
+        "Es lief etwas zäh...#{extra_exp_text} 😰"
       end
     message = "<@#{user_id}> beendet das Training und bekommt #{exp} exp. #{outcome_text}"
     BOT.send_message(channel_id, message)
