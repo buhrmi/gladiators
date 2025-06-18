@@ -4,6 +4,34 @@ namespace :discord do
     bot = Discordrb::Commands::CommandBot.new token: Rails.application.credentials.dig(:discord, :bot_token),
       prefix: "!", intents: %i[server_messages]
 
+    bot.command :train do |event, args|
+      message = event.message
+      author = message.author
+      character = Character.where(discord_user_id: author.id).first_or_create!
+      if args.empty?
+        return "Ihr müsst angeben, wie lange ihr trainieren wollt, z.B. `!train 10` für 10 Minuten."
+      end
+
+      begin
+        duration = Integer(args)
+      rescue ArgumentError
+        return "Die Trainingsdauer muss eine Zahl sein, z.B. `!train 10` für 10 Minuten."
+      end
+      if duration <= 0
+        return "Die Trainingsdauer muss größer als 0 sein."
+      end
+      if duration > 60
+        return "Die Trainingsdauer darf maximal 60 Minuten betragen."
+      end
+
+      TrainCharacterJob.set(wait: duration.minutes).perform_later(
+        character_id: character.id,
+        channel_id: event.channel.id,
+        user_id: author.id
+      )
+      "Ihr trainiert jetzt für #{duration} Minuten."
+    end
+
     bot.command :attack do |event, args|
       message = event.message
       author = message.author

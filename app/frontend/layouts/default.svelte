@@ -65,7 +65,7 @@
   <button class="close absolute top-2 right-2" onclick={() => State.announcementClosed = true}>
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
-  Nach 20 Jahren mal wieder ein neues Browsergame. Kommste <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a> hallo sagen oder so.
+  Dies ist ein Testserver. Datenbank wird immer mal wieder zurückgesetzt. Kommste <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord</a> hallo sagen?
 </div>
 {/if}
 

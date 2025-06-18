@@ -20,5 +20,15 @@
       
       <a href="https://discord.gg/S4wb8V3GrP" target="_blank" rel="noopener noreferrer">Discord Server</a>.
     </p>
+
+    <h2>Unterstützte Bot Befehle</h2>
+    <ul>
+      <li>
+        !attack [@name] - Greift den Charakter @name an
+      </li>
+      <li>
+        !train [minuten] - Für [minuten] ins Training gehen, und Erfahrung erhalten.
+      </li>
+    </ul>
   </section>
 </main>
