@@ -1,8 +1,9 @@
 class FinishActivityJob < ApplicationJob
+  BOT = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :bot_token)
+
   queue_as :default
 
   def perform(character_id, channel_id = nil, user_id = nil, options)
-    bot = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :bot_token)
     # Simulate training outcome: random factor between 0.5 and 1.5
     outcome_factor = rand(0.6..1.5)
     duration = options[:duration] || 1
@@ -25,7 +26,7 @@ class FinishActivityJob < ApplicationJob
         "Das Training war heute etwas zäh...#{extra_exp_text} 😅"
       end
     message = "<@#{user_id}> beendet das Training und bekommt #{exp} exp. #{outcome_text}"
-    bot.send_message(channel_id, message)
+    BOT.send_message(channel_id, message)
   rescue => e
     puts e
   end
