@@ -1,4 +1,4 @@
-MAX_LEVEL = 99
+MAX_LEVEL = 100
 
 EXP_TABLE = [].tap do |table|
   for level in 1..MAX_LEVEL
@@ -88,7 +88,7 @@ module Formulas
   end
 
   def exp_reward()
-    reward = (exp_to_next_level() ** 0.7).round
+    reward = (exp_to_next_level() ** 0.7 - 2).round
     reward /= 2 if hp() < max_hp()
     reward = (reward * (hp().to_f / max_hp())).floor
     reward

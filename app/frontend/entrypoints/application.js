@@ -22,7 +22,7 @@ window.addEventListener('wheel', function(e) {
   const target = panes[panes.length - 1]; // Select the last pane
   if (!target) return;
   target.scrollTop += e.deltaY;
-}, { passive: false });
+});
 
 document.addEventListener("inertia:success", (event) => {
   const flash = event.detail.page.props.flash;

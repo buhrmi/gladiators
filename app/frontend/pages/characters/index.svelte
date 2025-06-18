@@ -70,7 +70,8 @@
     <section>
       <p>
         Arena Wars ist eine <a href="https://github.com/buhrmi/arenawars">open-source</a> Neuinterpretation
-        des Browsergames <strong>Gladiators 2</strong> von 2004.
+        des Browsergames <strong>Gladiators 2</strong> von 2004.<br>
+        &copy; Shitcoin Society | <a href="/bot">Discord Bot</a>
       </p>
     </section>
   </main>

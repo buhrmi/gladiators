@@ -2,7 +2,7 @@
 
 An open-source reimagination of the [classic Gladiators 2 browsergame](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/) from 2004. 
 
-[Testing server](https://arena.buhrmi.de/) • [Chat on Discord](https://discord.gg/S4wb8V3GrP)
+[Testing server](https://arena.buhrmi.de/) • [Chat on Discord](https://discord.gg/Tzt4qbnUJC)
 
 ## History
 
