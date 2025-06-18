@@ -24,12 +24,13 @@ namespace :discord do
         return "Die Trainingsdauer darf maximal 60 Minuten betragen."
       end
 
-      TrainCharacterJob.set(wait: duration.minutes).perform_later(
+      FinishTrainingJob.set(wait: duration.minutes).perform_later(
         character_id: character.id,
         channel_id: event.channel.id,
-        user_id: author.id
+        user_id: author.id,
+        duration: duration
       )
-      "Ihr trainiert jetzt für #{duration} Minuten."
+      "<@#{author.id}> geht für #{duration} Minuten trainieren."
     end
 
     bot.command :attack do |event, args|
