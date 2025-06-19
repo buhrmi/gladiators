@@ -10,11 +10,11 @@ Gladiators 2 started in 2004 as a free-to-play text-based browser game. Even tho
 
 You can still find some fragments in the Wayback Machine today: [Old landing page with story](https://web.archive.org/web/20041202235635/http://www.g2.onlineplayers.de/), [Old landing page with news](https://web.archive.org/web/20050206205824/http://g2.onlineplayers.de/)
 
-In 2006 I gave the project away for free to the community leader, after announcing a successor: [Gladiators 3](https://web.archive.org/web/20050215164909/http://gladiators.schaunwama.de/forum/showthread.php?p=1581). This would later become [Gondal](https://web.archive.org/web/20060717024220/http://gondal.webtales.4players.de/). It was ultimately sold off, and the new owners reused the name and domain for a [new browsergame](https://gondal.de), which is in operation even today.
+In 2006 I donated the game and its source code to the community, after announcing a successor: [Gladiators 3](https://web.archive.org/web/20050215164909/http://gladiators.schaunwama.de/forum/showthread.php?p=1581). This would later become [Gondal](https://web.archive.org/web/20060717024220/http://gondal.webtales.4players.de/). It was ultimately sold off, and the new owners reused the name and domain for a [new browsergame](https://gondal.de), which is in operation even today.
 
-The Gladiators 2 community leader went on to rename the project Arenakampf and also gave it a new design: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/). The game managed to stay active until 2018, when it finally shut down.
+Spearheaded by Argail, the Gladiators 2 community went on to rename the project "Arenakampf" and also gave it a new design: [Redesign and rename into arenakampf.de](https://web.archive.org/web/20150927070655/http://arenakampf.de/). The game managed to stay active until 2018, when it ultimately shut down.
 
-Arena Wars is an attempt to capture all the good ideas and memories of the game and its past, make them come alive again with a modern codebase, and to maybe even reconnect with old players. If you are an old player and have been waiting for a "new gladi", feel free to hop in to the [Discord channel](https://discord.gg/S4wb8V3GrP) and say hi.
+Arena Wars is an attempt to capture the spirit of the game and its past, and make it come alive again with a modern codebase. And to - maybe - even reconnect with old players. If you are an old player and have been waiting for a "new gladi", feel free to hop in to the [Discord channel](https://discord.gg/Tzt4qbnUJC) and say hi.
 
 ## Features
 
