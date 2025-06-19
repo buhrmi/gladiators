@@ -4,6 +4,7 @@ de:
     target_dead: "%{target_name} ist tot."
     attacker_dead: "Ihr könnt nicht angreifen, wenn Ihr tot seid."
     attack_too_soon: "Ihr müsst noch %{wait_time} warten, bis Ihr %{target_name} erneut angreifen könnt."
+    character_busy: "Ihr seid noch %{wait_time} beschäftigt und könnt nicht angreifen."
   activerecord:
     errors:
       messages:

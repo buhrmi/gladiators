@@ -27,9 +27,28 @@ namespace :discord do
         character = Character.where(discord_user_id: author.id).first_or_create!
       end
       info = "[**#{character.name}** (Level #{character.level} #{character.race})](<https://arena.buhrmi.de/characters/#{character.id}>)\n"
-      info += "HP: #{character.hp.ceil} / #{character.max_hp}\n"
-      info += "EXP: #{character.exp_on_this_level} / #{character.exp_to_next_level} bis Level Up"
+      if character.hp <= 0
+        info += "💀 HP: #{character.hp.ceil} / #{character.max_hp}\n"
+        resurrection_in = character.resurrection_in.ceil
+        info += "Wiederbeleben in #{resurrection_in}s\n"
+      else
+        info += "❤️ HP: #{character.hp.ceil} / #{character.max_hp}\n"
+      end
+      info += "✨ EXP: #{character.exp_on_this_level} / #{character.exp_to_next_level} bis Level Up"
       info
+    end
+
+    bot.command :cancel do |event|
+      message = event.message
+      author = message.author
+      character = Character.where(discord_user_id: author.id).first_or_create!
+      if job = character.active_job
+        job.destroy
+        character.update active_job_id: nil
+        "<@#{author.id}> hat das Training abgebrochen."
+      else
+        "<@#{author.id}> hat nichts zu tun."
+      end
     end
 
     # trains for a while and gives exp
@@ -38,6 +57,9 @@ namespace :discord do
       author = message.author
       character = Character.where(discord_user_id: author.id).first_or_create!
       duration = 0
+      if character.hp <= 0
+        return "<@#{author.id}> ist tot und kann nicht trainieren. Bitte wartet noch #{character.resurrection_in.ceil} Sekunden."
+      end
       character.with_lock do
         if job = character.active_job
           finish_time = job.scheduled_at

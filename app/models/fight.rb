@@ -35,6 +35,16 @@ class Fight < ApplicationRecord
         target_name: target.name
       )
     end
+
+    if job = attacker.active_job
+      finish_time = job.scheduled_at
+      remaining_time = finish_time - Time.now
+      in_words = ActiveSupport::Duration.build(remaining_time.ceil).inspect
+      raise Errors::GameError.new("fight.character_busy",
+        wait_time: in_words,
+      )
+    end
+
     if !attacker.alive
       raise Errors::GameError.new("fight.attacker_dead")
     end

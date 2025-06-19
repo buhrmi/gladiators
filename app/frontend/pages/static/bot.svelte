@@ -15,10 +15,13 @@
         !attack @name - Greift den Charakter @name an
       </li>
       <li>
+        !info [@name] - Zeigt Informationen über Euch selbst oder @name an.
+      </li>
+      <li>
         !train x - Für x Minuten trainieren, und Erfahrung erhalten.
       </li>
       <li>
-        !info [@name] - Zeigt Informationen über Euch selbst oder @name an.
+        !cancel - Beendet Eure aktuelle Aktion (z.B. Training).
       </li>
     </ul>
     <h2 class="mt-4 mb-2">
