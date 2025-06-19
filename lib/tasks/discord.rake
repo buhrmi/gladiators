@@ -4,6 +4,29 @@ namespace :discord do
     bot = Discordrb::Commands::CommandBot.new token: Rails.application.credentials.dig(:discord, :bot_token),
       prefix: "!", intents: %i[server_messages]
 
+    # shows level, race, and hp of own character or specified by name
+    bot.command :info do |event, args|
+      message = event.message
+      author = message.author
+      character = nil
+      if args && !args.strip.empty?
+        # Try to find by mention or by name
+        if match = args.match('<@(?<id>\\d+)>')
+          character = Character.where(discord_user_id: match[:id]).first
+        else
+          character = Character.where("lower(name) = ?", args.strip.downcase).first
+        end
+        return "Charakter nicht gefunden." unless character
+      else
+        character = Character.where(discord_user_id: author.id).first_or_create!
+      end
+      info = "**#{character.name}** (Level #{character.level} #{character.race})\n"
+      info += "HP: #{character.hp.ceil} / #{character.max_hp}\n"
+      info += "EXP: #{character.exp_on_this_level} / #{character.exp_to_next_level} bis Level Up"
+      info
+    end
+
+    # trains for a while and gives exp
     bot.command :train do |event, args|
       message = event.message
       author = message.author

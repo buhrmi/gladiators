@@ -23,10 +23,13 @@
     <h2>Implementierte Befehle</h2>
     <ul>
       <li>
-        !attack [@name] - Greift den Charakter @name an
+        !attack @name - Greift den Charakter @name an
       </li>
       <li>
-        !train [x] - Für [x] Minuten trainieren, und Erfahrung erhalten.
+        !train x - Für x Minuten trainieren, und Erfahrung erhalten.
+      </li>
+      <li>
+        !info [@name] - Zeigt Informationen über Euch selbst oder @name an.
       </li>
     </ul>
   </section>
