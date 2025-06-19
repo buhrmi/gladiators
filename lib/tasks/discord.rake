@@ -82,7 +82,12 @@ namespace :discord do
           attacker: attacker,
           target: target
         )
-        fight.execute!
+
+        begin
+          fight.execute!
+        rescue Errors::GameError => e
+          return e.message
+        end
 
 
         url = Rails.application.routes.url_helpers.fight_url(fight)

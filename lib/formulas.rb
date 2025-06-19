@@ -75,6 +75,18 @@ module Formulas
     end
   end
 
+  def wait_between_attacks()
+    180
+  end
+
+  def time_to_next_attack(last_attack_time)
+    if last_attack_time.nil?
+      0
+    else
+      [ last_attack_time + wait_between_attacks() - current_time(), 0 ].max
+    end
+  end
+
   def current_time()
     Time.current.to_f
   end

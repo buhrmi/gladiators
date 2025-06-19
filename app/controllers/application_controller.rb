@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path)
   end
 
+  rescue_from Errors::GameError do |exception|
+    flash[:error] = exception.message
+    redirect_back(fallback_location: root_path)
+  end
+
   inertia_share do
     {
       flash: flash.to_h,

@@ -27,6 +27,25 @@ class Fight < ApplicationRecord
   end
 
   def execute!
+    last_attack = attacker.attacking_fights.where(target_id: target.id).order(created_at: :desc).first
+    if last_attack && attacker.time_to_next_attack(last_attack.created_at.to_i) > 0
+      wait_time = ActiveSupport::Duration.build(attacker.time_to_next_attack(last_attack.created_at.to_i).ceil).inspect
+      raise Errors::GameError.new("fight.attack_too_soon",
+        wait_time: wait_time,
+        target_name: target.name
+      )
+    end
+    if !attacker.alive
+      raise Errors::GameError.new("fight.attacker_dead")
+    end
+    if !target.alive
+      raise Errors::GameError.new("fight.target_dead", target_name: target.name)
+    end
+    if attacker.id == target.id
+      raise Errors::GameError.new("fight.cannot_attack_self")
+    end
+
+
     self.rewards[0] = {
       exp: participants[1].exp_reward,
       coppers: participants[1].coppers_reward

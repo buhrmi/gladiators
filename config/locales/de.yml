@@ -1,4 +1,9 @@
 de:
+  fight:
+    cannot_attack_self: "Ihr könnt Euch nicht selbst angreifen."
+    target_dead: "%{target_name} ist tot."
+    attacker_dead: "Ihr könnt nicht angreifen, wenn Ihr tot seid."
+    attack_too_soon: "Ihr müsst noch %{wait_time} warten, bis Ihr %{target_name} erneut angreifen könnt."
   activerecord:
     errors:
       messages:
