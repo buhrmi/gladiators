@@ -1,5 +1,6 @@
 <script>
   import { getContext } from 'svelte';
+  import { State } from 'activestate';
   const {
     target,
     back
@@ -19,8 +20,9 @@
   <section class="py-2">
     <h2 class="mb-2">Wollt Ihr {target.name} angreifen?</h2>
     <p>
-      Plötzlich seht Ihr <strong>{target.name}</strong> vor Euch stehen, ein <strong>{target.race} der {target.level}. Stufe</strong>. Sein <strong>Schwert</strong> ist einsatzbereit.
+      Das Publikum jubelt. Plötzlich seht Ihr <strong>{target.name}</strong> vor Euch stehen, ein <strong>{target.race} der {target.level}. Stufe</strong>. Sein <strong>Schwert</strong> ist einsatzbereit.
     </p>
+    {#if State.character}
     <button onclick={attack} class="btn attack mb-2" data-loader>
       <div class="i-game-icons:sword-brandish w-1.7em h-1.7em"></div>
       <div>Angreifen</div>
@@ -29,5 +31,10 @@
       <div class="i-healthicons:running-24px w-1.7em h-1.7em scale-x-[-1]"></div>
       Lieber nicht.
     </button>
+    {:else}
+      <p>
+        ...doch leider seid Ihr nicht eingeloggt.
+      </p>
+    {/if}
   </section>
 </main>

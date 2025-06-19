@@ -2,7 +2,7 @@
   <section class="py-2">
     <h1 class="mb-2">Discord Bot</h1>
     <p>
-      Mit dem Arena Wars Discord Bot könnt Ihr mit anderen Characteren in Discord interagieren.
+      Mit dem Arena Wars Discord Bot könnt Ihr in Eurem Discord-Server mit anderen Characteren interagieren.
       Keinen eigenen Discord-Server zur Hand?
               Kein Problem! Kommt einfach in unseren  
         <a href="https://discord.gg/Tzt4qbnUJC" target="_blank" rel="noopener noreferrer">

@@ -10,20 +10,10 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-    session[:discord] = {
-      uid: auth.uid,
-      info: {
-        name: auth.info.name,
-        email: auth.info.email,
-        image: auth.info.image
-      }
-    }
-    char = Character.find_by(discord_user_id: auth.uid)
-    if char
-      session[:character_id] = char.id
-    else
-      flash[:notice] = "Diesem Discord-Account ist kein Charakter zugeordnet."
-    end
+
+    char = Character.find_or_create_by(discord_user_id: auth.uid)
+    session[:character_id] = char.id
+
     render layout: false
   end
 
