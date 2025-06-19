@@ -1,26 +1,15 @@
 <main>
   <section class="py-2">
-    <h1>Arena Wars Bot</h1>
+    <h1 class="mb-2">Discord Bot</h1>
     <p>
-      Na, Langeweile in Discord? Dann laden Sie doch einfach
-      den <strong>Arena Wars Bot</strong> in Ihren Server ein.
-      <a href="https://github.com/buhrmi/arenawars" target="_blank">Open-source</a>, made with Svelte.
+      Mit dem Arena Wars Discord Bot könnt Ihr mit anderen Characteren in Discord interagieren.
+      Keinen eigenen Discord-Server zur Hand?
+              Kein Problem! Kommt einfach in unseren  
+        <a href="https://discord.gg/Tzt4qbnUJC" target="_blank" rel="noopener noreferrer">
+         offiziellen Server
+        </a>.
     </p>
-    <img src="/screenshots/discord.png" class="rounded-2em mb-4" alt="Discord Bot Screenshot">
-      <a
-        href="/install"
-        class="btn primary"
-        target="_blank"
-        data-inertia-ignore
-        >Bot einladen</a
-      >
-    <p class="mt-4">
-      Oder testen Sie den Bot im
-      <a href="https://discord.gg/Tzt4qbnUJC" target="_blank" rel="noopener noreferrer">Discord Server</a>
-      der Shitcoin Society.
-    </p>
-
-    <h2>Implementierte Befehle</h2>
+    <h2 class="mb-2">Implementierte Befehle</h2>
     <ul>
       <li>
         !attack @name - Greift den Charakter @name an
@@ -32,5 +21,19 @@
         !info [@name] - Zeigt Informationen über Euch selbst oder @name an.
       </li>
     </ul>
+    <h2 class="mt-4 mb-2">
+      Bot in Discord einladen
+    </h2>
+    <p>
+      Der Bot kann in jedem Discord Server installiert werden, auf dem Ihr Administrator seid.
+    </p>
+    <img src="/screenshots/discord.png" class="rounded-2em mb-4" alt="Discord Bot Screenshot">
+      <a
+        href="/install"
+        class="btn primary"
+        target="_blank"
+        data-inertia-ignore
+        >Bot einladen</a
+      >
   </section>
 </main>

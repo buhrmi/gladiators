@@ -1,6 +1,6 @@
 <script>
   import { augment } from "~/lib/character.svelte.js"
-  import Time from "~/lib/time.svelte.js";
+
   import { State } from "activestate";
   import { navstack } from "navstack";
 
@@ -16,7 +16,7 @@
 
   function canAttack(c) {
     let res = true
-    // if (!State.character) return false
+
     if (State.character?.time_to_next_attack(lastAttacks[c.id]) > 0) res = false
     if (c.id == State.character?.id) res = false
     if (c.hp <= 0) res = false
@@ -70,9 +70,7 @@
     </section>
     <section>
       <p>
-        Arena Wars ist eine open-source Neuinterpretation
-        des Browsergames <strong>Gladiators 2</strong> von 2004. 
-        <a href="https://github.com/buhrmi/arenawars">Mehr Infos auf GitHub</a>.
+        Hier geht's zum Arena Wars <a href="/bot">Discord Bot</a>.
       </p>
     </section>
   </main>

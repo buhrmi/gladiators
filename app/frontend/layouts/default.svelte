@@ -65,7 +65,7 @@
   <button class="close absolute top-2 right-2" onclick={() => State.announcementClosed = true}>
     <div class="i-uiw:close w-1.4em h-1.4em">Close</div>
   </button>
-  Dies ist ein Testserver. Datenbank wird immer mal wieder zurückgesetzt. Komm ins <a href="https://discord.gg/Tzt4qbnUJC" target="_blank" rel="noopener noreferrer">Discord</a> hallo sagen!
+  Dies ist ein Testserver. Datenbank wird immer mal wieder zurückgesetzt.
 </div>
 {/if}
 
