@@ -1,8 +1,9 @@
 namespace :discord do
   desc "Runs the discord bot"
   task bot: :environment do
+    prefix = Rails.env.production? ? "!" : "+"
     bot = Discordrb::Commands::CommandBot.new token: Rails.application.credentials.dig(:discord, :bot_token),
-      prefix: "!", intents: %i[server_messages]
+      prefix: prefix, intents: %i[server_messages]
 
     # shows level, race, and hp of own character or specified by name
     bot.command :info do |event, args|
@@ -86,7 +87,8 @@ namespace :discord do
         begin
           fight.execute!
         rescue Errors::GameError => e
-          return e.message
+          event.respond e.message, false, nil, nil, nil, event.message
+          return nil
         end
 
 
