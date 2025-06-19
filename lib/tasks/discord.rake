@@ -20,7 +20,7 @@ namespace :discord do
       else
         character = Character.where(discord_user_id: author.id).first_or_create!
       end
-      info = "**#{character.name}** (Level #{character.level} #{character.race})\n"
+      info = "[**#{character.name}** (Level #{character.level} #{character.race})](<https://arena.buhrmi.de/characters/#{character.id}>)\n"
       info += "HP: #{character.hp.ceil} / #{character.max_hp}\n"
       info += "EXP: #{character.exp_on_this_level} / #{character.exp_to_next_level} bis Level Up"
       info
