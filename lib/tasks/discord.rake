@@ -43,7 +43,7 @@ namespace :discord do
       author = message.author
       character = Character.where(discord_user_id: author.id).first_or_create!
       if job = character.active_job
-        job.destroy
+        job.discard
         character.update active_job_id: nil
         "<@#{author.id}> hat das Training abgebrochen."
       else
