@@ -5,6 +5,11 @@ namespace :discord do
     bot = Discordrb::Commands::CommandBot.new token: Rails.application.credentials.dig(:discord, :bot_token),
       prefix: prefix, intents: %i[server_messages]
 
+
+    bot.command :market do |event, args|
+      "<https://arena.buhrmi.de/auctions>"
+    end
+
     # shows level, race, and hp of own character or specified by name
     bot.command :info do |event, args|
       message = event.message
