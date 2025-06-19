@@ -4,7 +4,7 @@ import { hydrate, mount } from "svelte";
 import resolve from "./util/resolve";
 import Toast, {showFlash} from "~/components/Toasts.svelte";
 import '~/components/loaders'
-
+import { pushWithoutHistory } from "navstack"
 import "virtual:uno.css"
 
 createInertiaApp({
@@ -26,12 +26,21 @@ window.addEventListener('wheel', function(e) {
 
 document.addEventListener("inertia:success", (event) => {
   const flash = event.detail.page.props.flash;
+  if (!flash) return;
   showFlash(flash);
+  if (flash.modal) {
+    pushWithoutHistory({
+      src: flash.modal,
+      group: "modal"
+    })
+  }
 })
 
 mount(Toast, {
   target: document.body
 })
+
+
 
 
 window.addEventListener("message", (event) => {

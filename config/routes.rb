@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :fights
   resources :characters
   resource :session
+  resources :auctions
 
   get "/auth/:provider/callback", to: "sessions#create"
   get "install", to: redirect("https://discord.com/oauth2/authorize?client_id=1153706516583563324")

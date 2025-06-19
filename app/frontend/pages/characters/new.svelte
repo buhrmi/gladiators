@@ -8,8 +8,7 @@
 
   const { 
     discord,
-    close,
-    return_to 
+    close
   } = $props();
 
   const character = useForm({
@@ -19,8 +18,7 @@
   // close out of this page if we already have a character
   $effect(() => { 
     if (State.character) {
-      if (return_to) router.visit(return_to, {replace: true});
-      else close();
+      close();
     } 
   });
 

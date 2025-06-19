@@ -50,7 +50,6 @@
           <a href="/fights/new?target_id={character.id}" class="btn attack" class:disabled={!canAttack(character)}
           use:navstack={{
             initialComponent: import("~/pages/fights/new.svelte"),
-            group: "arena",
             target: character
           }}
           >

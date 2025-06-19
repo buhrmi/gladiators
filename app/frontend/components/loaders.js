@@ -14,8 +14,11 @@ document.addEventListener("inertia:before", (event) => {
     loaderElement.classList.add("loading");
     loaderElement.setAttribute("aria-busy", "true");
     loaderElement.setAttribute("disabled", "true");
+    
+    if (loaderElement.querySelector(".spinner")) return;
     const spinner = document.createElement("div");
     spinner.className = "spinner";
+
     loaderElement.appendChild(spinner);
   }
 })

@@ -9,7 +9,7 @@ class CharactersController < ApplicationController
   end
 
   def new
-    launch_in_modal
+    # launch_in_modal
     @return_to = session[:return_to]
     @discord = session[:discord]
   end

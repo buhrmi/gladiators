@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
     if params[:provider]
       # Just render the ERB template that automatically makes a POST request to /auth/:provider
       render layout: false
+    else
+      launch_in_modal
     end
   end
 

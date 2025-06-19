@@ -6,8 +6,8 @@ class FightsController < ApplicationController
 
   def create
     unless current_character
-      session[:return_to] = new_fight_path(target_id: params[:target_id])
-      return redirect_to new_character_path
+      flash[:modal] = new_character_path
+      return redirect_back
     end
     sleep 1 # hihi
     fight = Fight.new(

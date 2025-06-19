@@ -19,12 +19,11 @@
   import { derived } from 'svelte/store';
 
   import { subscribe, State } from 'activestate'
-  import { NavStack, navstack, pushWithoutHistory } from "navstack";
+  import { NavStack, navstack } from "navstack";
   
   let {
     children,
     character_sgid,
-    flash,
     panes = [],
   } = $props();
   
@@ -36,19 +35,13 @@
       unsubscribe();
       unsubscribe = subscribedId = null;
       State.character_id = null;
+      State.last_attacks = {};
     }
     if (character_sgid) {
       subscribedId = character_sgid;
       unsubscribe = subscribe("CharacterChannel", { character_sgid });
     }
   });
-
-  if (flash.modal) {
-    pushWithoutHistory({
-      src: flash.modal,
-      group: "modal"
-    })
-  }
 
   let announcementClosed = $derived(State.announcementClosed || false);
 
@@ -85,7 +78,7 @@
             style="width: {Math.max(0, Math.min(100, (character.hp() / character.max_hp()) * 100))}%"
           ></div>
           <div class="hp-text">
-            HP: {Math.floor(character.hp())} / {character.max_hp()}
+            HP: {Math.ceil(character.hp())} / {character.max_hp()}
           </div>
         </div>
         {#if character.hp() <= 0}
@@ -146,10 +139,11 @@
       </a>
     </li>
         <li>
-      <a href="/guild" use:navstack={{ replace: true }}>
-        <div class="i-game-icons:barracks-tent w-1.8em h-1.8em"></div>
+      <a href="/auctions" use:navstack={{ replace: true }}>
+        <!-- <div class="i-game-icons:barracks-tent w-1.8em h-1.8em"></div> -->
+        <div class="i-tdesign:shop-2-filled w-1.8em h-1.8em"></div>
         <div>
-          Gilde
+          Marktplatz
         </div>
       </a>
     </li>
