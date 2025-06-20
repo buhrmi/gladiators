@@ -26,9 +26,10 @@
 
 <main>
   <section class="py-2">
-    <h2 class="mb-2">Willkommen bei Arena Wars</h2>
+    <h2 class="mb-2">Langsam betretet Ihr die Arena</h2>
     <p>
-      Langsam betretet Ihr die Arena. Jubel und Geschrei ertönt von den Rängen. Als Ihr Euch umblickt, seht Ihr viele merkwüdige Gestalten.
+      Ein paar wenige Stofffetzen bedecken Eure Haut. In Eurer Hand haltet Ihr eine zerbrochene Flasche.
+      Jubel und Geschrei ertönt von den Rängen.
     </p>
     <div class="arena">
       {#each augmentedCharacters as character}
@@ -69,7 +70,7 @@
     </section>
     <section>
       <p>
-        Arena Wars ist eine <a href="https://github.com/buhrmi/arenawars" target="_blank">open-source</a> Neuinterpretation des Browsergames Gladiators 2 aus dem Jahre 2004. Viele Funktionen sind derzeit nur über den Discord Bot verfügbar. <a href="/bot">Mehr infos</a>.
+        Arena Wars ist eine <a href="https://github.com/buhrmi/arenawars" target="_blank">open-source</a> Neuinterpretation des Browsergames Gladiators 2 aus dem Jahre 2004. Einige Funktionen sind derzeit nur über den Chatbot verfügbar. <a href="/bot">Mehr infos</a>.
       </p>
     </section>
   </main>

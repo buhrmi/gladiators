@@ -289,6 +289,7 @@ nav {
 .group_container .group {
   width: 100%;
   max-width: 100vw;
+  position: relative;
 }
 .group_container.root,
 .group_container.root .group_bg {

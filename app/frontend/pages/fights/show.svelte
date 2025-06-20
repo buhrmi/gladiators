@@ -17,7 +17,7 @@
     if (log.event == "attack") {
       const attacker = participants[log.attacker_idx];
       const target = participants[log.target_idx];
-      return `${attacker.name} greift ${target.name} mit Schwert an.`;
+      return `${attacker.name} greift ${target.name} mit zerbrochene Flasche an.`;
     }
     else if (log.event == "damage") {
       const target = participants[log.target_idx];
@@ -31,9 +31,9 @@
 </script>
 
 {#if fight.won}
- <div class="absolute inset-0 flex justify-center z-10 pointer-events-none overflow-hidden">
-   <ConfettiExplosion />
- </div>
+  <div class="absolute inset-0 flex justify-center z-10 pointer-events-none overflow-hidden">
+    <ConfettiExplosion />
+  </div>
 {/if}
 
 <main>

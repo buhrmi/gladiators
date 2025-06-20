@@ -21,6 +21,8 @@
   import { NavStack, navstack } from "navstack";
   
   State.updates = [];
+  State.inventory = [];
+  
   subscribe("ArenaChannel")
   
   let {
@@ -31,6 +33,9 @@
   
   let unsubscribe = null;
   let subscribedId = null;
+
+  let inventoryOpened = $state(true);
+
   $effect(() => {
     if (subscribedId == character_sgid) return;
     if (unsubscribe) {
@@ -170,7 +175,7 @@
         </div>
       </a>
     </li>
-        <li>
+    <li>
       <a href="/auctions" use:navstack={{ replace: true }}>
         <!-- <div class="i-game-icons:barracks-tent w-1.8em h-1.8em"></div> -->
         <div class="i-tdesign:shop-2-filled w-1.8em h-1.8em"></div>
@@ -179,11 +184,36 @@
         </div>
       </a>
     </li>
+    <li>
+      <button onclick={() => inventoryOpened = !inventoryOpened} class="btn inventory-toggle">
+        <div class="i-game-icons:swap-bag w-1.8em h-1.8em"></div>
+        <div>
+            Inventar
+            {#if inventoryOpened}
+              <span class="i-ic:round-keyboard-arrow-down w-1.6em h-1.6em"></span>
+            {:else}
+              <span class="i-ic:round-keyboard-arrow-up w-1.6em h-1.6em"></span>
+            {/if}
+        </div>
+      </button>
+    </li> 
   </menu>
 </nav>
 
 <main id="main">
   <NavStack {panes} {children} {loading} />
+  <div class="inventory">
+
+    {#if inventoryOpened}
+      <div class="items" transition:slide>
+        {#each Array.from({ length: 24 }, (_, i) => i) as i}
+          <div class="item">
+            
+          </div>
+        {/each}
+      </div>
+    {/if}
+  </div>
 </main>
 
 {#snippet loading()}
@@ -193,6 +223,24 @@
 {/snippet}
 
 <style>
+  .inventory {
+    border-top: 1px solid var(--color-border);
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    padding: 0.5em;
+  }
+  .item {
+    background: #f0f0f0;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-border);
+  }
+
+
   /* Common styles for bar containers */
   .hp-bar-container,
   .exp-bar-container {
@@ -254,19 +302,22 @@
     pointer-events: none;
   }
 
-  nav a {
+  nav a, nav button {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 0.875rem;
+    padding: 0;
+    gap: 0;
   }
   @media (min-width: 768px) {
-    nav a {
+    nav a, nav button {
       flex-direction: row;
       gap: 0.5rem;
       font-size: 1em;
       padding: 0.5rem 1rem;
       border-radius: 3rem;
+      justify-content: start;
     }
     nav a:hover {
       background: #f0f0f0;

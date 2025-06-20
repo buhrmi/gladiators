@@ -69,6 +69,16 @@ button:hover, a:hover {
   }
 }
 
+#main {
+  display: grid;
+  grid-template-areas:
+    "main"
+    "inventory";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  position: relative;
+}
+
 header {
   display: flex;
   justify-content: space-between;
