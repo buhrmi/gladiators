@@ -184,11 +184,16 @@
         </div>
       </a>
     </li>
-    <li>
-      <button onclick={() => inventoryOpened = !inventoryOpened} class="btn inventory-toggle">
-        <div class="i-game-icons:swap-bag w-1.8em h-1.8em"></div>
+  </menu>
+</nav>
+
+<main id="main">
+  <NavStack {panes} {children} {loading} />
+  <div class="inventory">
+    <button onclick={() => inventoryOpened = !inventoryOpened} class="inventory-toggle">
+        <div class="i-game-icons:swap-bag w-1.5em h-1.5em"></div>
         <div>
-            Inventar
+            Beutel
             {#if inventoryOpened}
               <span class="i-ic:round-keyboard-arrow-down w-1.6em h-1.6em"></span>
             {:else}
@@ -196,14 +201,6 @@
             {/if}
         </div>
       </button>
-    </li> 
-  </menu>
-</nav>
-
-<main id="main">
-  <NavStack {panes} {children} {loading} />
-  <div class="inventory">
-
     {#if inventoryOpened}
       <div class="items" transition:slide>
         {#each Array.from({ length: 24 }, (_, i) => i) as i}
@@ -225,7 +222,22 @@
 <style>
   .inventory {
     border-top: 1px solid var(--color-border);
+    position: relative;
   }
+  .inventory-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5em;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-bottom: 1px solid  var(--color-bg);
+    cursor: pointer;
+    position: absolute;
+    bottom: 100%;
+  }
+
   .items {
     display: flex;
     flex-wrap: wrap;
