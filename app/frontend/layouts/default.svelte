@@ -112,10 +112,10 @@
   {:else if character_sgid}
     <div class="spinner"></div>
   {:else}
-    <div class="character text-center flex items-center gap-2 md:flex-col">
+    <div class="character">
         <button
           onclick={login}
-          class="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200"
+          class="flex mb-2 items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200"
         >
           <svg
             class="h-6 w-6 mr-2"
@@ -138,6 +138,24 @@
           </svg>
           <span>Einloggen</span>
         </button>
+        <div class="hp">
+          <div class="hp-bar-container empty">
+            <div class="hp-text">
+              HP: 0 / 0
+            </div>
+          </div>
+        </div>
+        <div class="exp">
+          <div class="exp-bar-container empty">
+            <div class="exp-text">
+              EXP: 0 / 0
+            </div>
+          </div>
+        </div>
+      <div class="flex gap-1 items-center">
+
+        0 <img src="/icons/copper.png" class="h-4" alt="Kupfer" />
+      </div>
     </div>
   {/if}
 </header>
@@ -187,14 +205,18 @@
     position: relative;
   }
 
+  
   /* Specific background for HP bar container */
   .hp-bar-container {
     background: #630505;
   }
-
+  
   /* Specific background for EXP bar container */
   .exp-bar-container {
     background: #530272;
+  }
+  .empty {
+    background: linear-gradient(to top, #c7c7c7, #e0e0e0);
   }
 
   /* Common styles for the actual bars (fill) */

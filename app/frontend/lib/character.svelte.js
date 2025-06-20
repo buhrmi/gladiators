@@ -7,6 +7,7 @@ import {Formulas} from "$/formulas.rb"
 
 
 const augmentedCharacters = {};
+State.updates ||= [];
 
 // export const character = toStore($derived(augmentedCharacters[State.character_id]))
 
