@@ -8,7 +8,6 @@
     window.open( url, "Arenakampf", 'resizable=1,scrollbars=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left)
   }
 
-  subscribe("ArenaChannel")
 </script>
 
 <script>
@@ -17,9 +16,12 @@
   
   import { slide } from 'svelte/transition';
   import { derived } from 'svelte/store';
-
+  
   import { subscribe, State } from 'activestate'
   import { NavStack, navstack } from "navstack";
+  
+  State.updates = [];
+  subscribe("ArenaChannel")
   
   let {
     children,

@@ -38,18 +38,29 @@
 
 <main>
   <section class="py-2">
-    <h2>
-      {#if fight.won}
-        Sieg
-      {:else}
-        Niederlage
-      {/if}
+    <h2 class="mb-2">
+      <a href="/characters/{attacker.id}">
+        {attacker.name}
+      </a>
+      kämpft gegen
+      <a href="/characters/{target.id}">
+        {target.name}
+      </a>
     </h2>
+    <p>
+      {attacker.name} stürmt auf {target.name} zu. Das Publikum tobt.
+      Der Kampf erstreckt sich über {fight.logs.length} Runden
+      bis schließlich
+      <strong>
+        {fight.won ? attacker.name : target.name}
+      </strong>
+      als Sieger hervorgeht.
+    </p>
     {#each rewards as reward, index}
       {@const char = participants[index]}
       {#each Object.entries(reward) as [type, amount]}
         <p>
-          {char.name} erhält {amount} {type}.
+          {char.name} gewinnt {amount} {type}.
         </p>
       {/each}
     {/each}

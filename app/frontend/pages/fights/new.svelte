@@ -22,7 +22,7 @@
     <p>
       Das Publikum jubelt. Plötzlich seht Ihr <strong>{target.name}</strong> vor Euch stehen, ein <strong>{target.race} der {target.level}. Stufe</strong>. Sein <strong>Schwert</strong> ist einsatzbereit.
     </p>
-    {#if State.character}
+    {#if State.character_id}
     <button onclick={attack} class="btn attack mb-2" data-loader>
       <div class="i-game-icons:sword-brandish w-1.7em h-1.7em"></div>
       <div>Angreifen</div>

@@ -69,7 +69,7 @@
     </section>
     <section>
       <p>
-        Hier geht's zum Arena Wars <a href="/bot">Discord Bot</a>.
+        Arena Wars ist eine <a href="https://github.com/buhrmi/arenawars" target="_blank">open-source</a> Neuinterpretation des Browsergames Gladiators 2 aus dem Jahre 2004. Viele Funktionen sind derzeit nur über den Discord Bot verfügbar. <a href="/bot">Mehr infos</a>.
       </p>
     </section>
   </main>
